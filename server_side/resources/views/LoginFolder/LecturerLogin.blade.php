@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecturer Login</title>
-    <link rel="stylesheet" href="Lecturer.css">
+    <link rel="stylesheet" href="{{asset('css/LogInFolder/lecturer.css')}}">
     <style>
         /* Additional CSS styles specific to this page */
     </style>
@@ -20,7 +20,7 @@
         <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Login"><br><br> <br>
          <!-- <a href="SignIn.html" id="signup">Haven't you registered yet? Sign up </a> -->
-         <p class="message">Have not registered yet? <a href="SignInL.html" id="signup">Sign up</a></p>
+         <p class="message">Have not registered yet? <a href="{{ url('/LecturerSignUp')}}" id="signup">Sign up</a></p>
      
     </form>
 

@@ -93,15 +93,15 @@
 </head>
 <body>
     <video autoplay muted loop>
-        <source src="circuit_-_27725 (1080p).mp4" type="video/mp4">
+        <source src="{{asset('videos/circuit.mp4')}}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <div class="content">
         <h1>Welcome to ByteBoost! <i class="fa-solid fa-computer"></i></h1>
         <div class="options">
-            <a class="glow" href="../LoginFolder/StdLogin.html">Student</a>
-            <a class="glow" href="../LoginFolder/LecturerLogin.html">Lecturer</a>
-            <a class="glow" href="../LoginFolder/AdmLogin.html">Administrator</a>
+            <a class="glow"  href="{{ url('/StudentLogin') }}">Student</a>
+            <a class="glow" href="{{ url('/LecturerLogin') }}">Lecturer</a>
+            <a class="glow" href="{{ url('/AdminLogin') }}">Administrator</a>
         </div>
     </div>
 </body>

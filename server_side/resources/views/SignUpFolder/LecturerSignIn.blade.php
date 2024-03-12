@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecturer Registration</title>
-    <link rel="stylesheet" href="SignIn.css">
+    <link rel="stylesheet" href="{{asset('css/SignUpFolder/SignInLecturer.css')}}">
 </head>
 <body>
     <div class="container">

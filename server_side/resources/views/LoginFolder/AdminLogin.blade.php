@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator Login</title>
-    <link rel="stylesheet" href="adm.css">
+    <link rel="stylesheet" href="{{asset('css/LogInFolder/admin.css')}}">
 </head>
 <body>
     <h1>Administrator Login</h1>

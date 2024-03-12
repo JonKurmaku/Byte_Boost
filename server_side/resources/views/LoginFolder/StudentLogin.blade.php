@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login</title>
-    <link rel="stylesheet" href="Std.css">
+    <link rel="stylesheet" href="{{asset('css/LogInFolder/student.css')}}">
     
     <style>
         /* Additional CSS styles specific to this page */
@@ -22,7 +22,7 @@
         <a href="../Dashboards/stdDashboard.html" id="login">Log in</a><br><br> <br>
       <!-- <input type="submit" value="Login"> -->
         <!-- <a href="SignIn.html" id="signup">Haven't you registered yet? Sign up </a> -->
-        <p class="message">Have not registered yet? <a href="SignIn.html" id="signup">Sign up</a></p>
+        <p class="message">Have not registered yet? <a href="{{ url('/StudentSignUp')}}" id="signup">Sign up</a></p>
         
     </form>
 

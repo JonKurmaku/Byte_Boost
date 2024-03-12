@@ -14,5 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('MainPage/MainPage');
+});
+
+Route::get('/StudentLogin', function () {
+    return view('LoginFolder/StudentLogin');
+});
+
+Route::get('/LecturerLogin', function () {
+    return view('LoginFolder/LecturerLogin');
+});
+
+Route::get('/AdminLogin', function () {
+    return view('LoginFolder/AdminLogin');
+});
+
+Route::get('/LecturerSignUp', function () {
+    return view('SignUpFolder/LecturerSignIn');
+});
+
+Route::get('/StudentSignUp', function () {
+    return view('SignUpFolder/StudentSignIn');
 });
