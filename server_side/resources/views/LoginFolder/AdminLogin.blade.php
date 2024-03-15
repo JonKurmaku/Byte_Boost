@@ -8,7 +8,8 @@
 </head>
 <body>
     <h1>Administrator Login</h1>
-    <form id="admin-login-form">
+    <form id="admin-login-form"  method="POST" action="{{  route('admin.login.submit') }}">
+    @csrf
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
         <label for="password">Password:</label><br>

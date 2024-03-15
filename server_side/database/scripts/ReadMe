@@ -1,0 +1,4 @@
+The database/scripts directory will hold all the '.sql' scripts if the developer would like to create the database
+schemas and users manualy through the DBMC rather than migrations in the project.
+
+Initially the admin was thought of being static as creating signups for the admin would be redundant .
