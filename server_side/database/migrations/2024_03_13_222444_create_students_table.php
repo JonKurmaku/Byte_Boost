@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('program');
             $table->string('gender')->nullable();
             $table->date('dob');
             $table->string('country')->nullable();

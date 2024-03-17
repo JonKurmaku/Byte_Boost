@@ -1,7 +1,15 @@
 <?php
 
+use App\Http\Controllers\Auth\ProfileControllers\LecturerProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\SignUpControllers\LecturerController;
+use App\Http\Controllers\SignUpControllers\StudentController;
+use App\Http\Controllers\Auth\LogInControllers\LecturerLogInController;
+use App\Http\Controllers\Auth\LogInControllers\StudentLogInController;
+use App\Http\Controllers\Auth\LogInControllers\AdminLogInController;
+use App\Http\Controllers\Auth\ProfileControllers\StudentProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +64,7 @@ Route::get('/lecturer/dashboard', function () {
 })->name('/lecturer/dashboard');
 
 Route::get('/student/dashboard', function () {
-    return view('test_dashboard_student'); 
+    return view('/Dashboards/dashboardStd'); 
 })->name('/student/dashboard');
 
 Route::get('/admin/dashboard', function () {
@@ -64,24 +72,33 @@ Route::get('/admin/dashboard', function () {
 })->name('/admin/dashboard');
 
 
+
 //Request Routes
-use App\Http\Controllers\SignUpControllers\LecturerController;
+
 Route::post('lecturers', [LecturerController::class, 'store'])->name('lecturer.store');
 
 
-use App\Http\Controllers\SignUpControllers\StudentController;
 Route::post('students', [StudentController::class, 'store'])->name('student.store');
 
 
-use App\Http\Controllers\Auth\LogInControllers\LecturerLogInController;
 Route::get('lecturer/login', [LecturerLogInController::class, 'showLoginForm'])->name('lecturer.login');
 Route::post('lecturer/login', [LecturerLogInController::class, 'login'])->name('lecturer.login.submit');
 
-use App\Http\Controllers\Auth\LogInControllers\StudentLogInController;
 Route::get('student/login', [StudentLogInController::class, 'showLoginForm'])->name('student.login');
 Route::post('student/login', [StudentLogInController::class, 'login'])->name('student.login.submit');
 
-use App\Http\Controllers\Auth\LogInControllers\AdminLogInController;
 
 Route::get('admin/login', [AdminLogInController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminLogInController::class, 'login'])->name('admin.login.submit');
+
+
+//LogOut routes
+Route::get('student/logout', [StudentLogInController::class, 'logout'])->name('student.logout');
+Route::get('lecturer/logout', [LecturerLogInController::class, 'logout'])->name('lecturer.logout');
+Route::get('admin/logout', [AdminLogInController::class, 'logout'])->name('admin.logout');
+
+
+//Edit Profile Routes
+Route::put('/student/dashboard', [StudentProfileController::class, 'update']);
+Route::put('/lecturer/dashboard', [LecturerProfileController::class, 'update']);
+

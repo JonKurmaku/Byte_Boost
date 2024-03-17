@@ -24,11 +24,14 @@
         <input type="password" id="confirm_password" name="password_confirmation" required><br>
 
         <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name"><br>
+        <input type="text" id="first_name" name="first_name" required><br>
 
         <label for="last_name">Last Name:</label><br>
-        <input type="text" id="last_name" name="last_name"><br>
+        <input type="text" id="last_name" name="last_name" required><br>
 
+        <label for="program">Program:</label><br>
+        <input type="text" id="program" name="program" required><br>
+        
         <label for="gender">Gender:</label><br>
         <select id="gender" name="gender">
             <option value="male">Male</option>
@@ -37,7 +40,7 @@
         </select><br>
 
         <label for="dob">Date of Birth:</label><br>
-        <input type="date" id="dob" name="dob"><br><br>
+        <input type="date" id="dob" name="dob" required><br><br>
 
         <label for="country">Country:</label><br>
         <input type="text" id="country" name="country"><br>

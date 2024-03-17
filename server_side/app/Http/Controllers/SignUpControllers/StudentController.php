@@ -18,6 +18,7 @@ class StudentController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'program' => 'required|string|max:255',
             'gender' => 'nullable|string',
             'dob' => 'required|date',
             'country' => 'nullable|string',

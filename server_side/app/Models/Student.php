@@ -18,6 +18,7 @@ class Student extends Model implements Authenticatable
         'password',
         'first_name',
         'last_name',
+        'program',
         'gender',
         'dob',
         'country',
