@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 
 
 class StudentLogInController extends Controller
@@ -24,14 +25,17 @@ class StudentLogInController extends Controller
         }
              return redirect()->back()->withErrors(['error' => 'Invalid credentials']);
     }
-    public function logout(Request $request)
-{
-    Auth::guard('student')->logout(); 
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
 
-    return redirect('/student/login');
-}
+    public function logout(Request $request)
+    {
+        Cookie::queue(Cookie::forget('your_session_cookie_name'));
+        Auth::guard('student')->logout();
+    
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+        return redirect('/student/login');
+    }
 
 }
 

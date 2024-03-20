@@ -59,9 +59,13 @@ Route::get('/StudentSignUp', function () {
     return view('SignUpFolder/StudentSignIn');
 });
 
+
+//Route::group(['middleware' => 'refreshPageCache'], function () {
+
 Route::get('/lecturer/dashboard', function () {
-    return view('test_dashboard_lecturer'); 
+    return view('/Dashboards/dashboardLecturer'); 
 })->name('/lecturer/dashboard');
+
 
 Route::get('/student/dashboard', function () {
     return view('/Dashboards/dashboardStd'); 
@@ -71,16 +75,35 @@ Route::get('/admin/dashboard', function () {
     return view('test_dashboard_admin'); 
 })->name('/admin/dashboard');
 
+//});
+
+Route::get('/student/dashboard/courseSelection', function () {
+    return view('/Dashboards/CourseSelection/courseSelection'); 
+})->name('/student/dashboard/courseSelection');
 
 
 //Request Routes
 
 Route::post('lecturers', [LecturerController::class, 'store'])->name('lecturer.store');
-
-
 Route::post('students', [StudentController::class, 'store'])->name('student.store');
 
 
+
+/*
+
+Route::get('lecturer/login', [LecturerLogInController::class, 'showLoginForm'])->name('lecturer.login');
+Route::post('lecturer/login', [LecturerLogInController::class, 'login'])->name('lecturer.login.submit');
+    
+Route::get('student/login', [StudentLogInController::class, 'showLoginForm'])->name('student.login');
+Route::post('student/login', [StudentLogInController::class, 'login'])->name('student.login.submit');
+    
+    
+Route::get('admin/login', [AdminLogInController::class, 'showLoginForm'])->name('admin.login');
+Route::post('admin/login', [AdminLogInController::class, 'login'])->name('admin.login.submit');
+
+});
+
+*/
 Route::get('lecturer/login', [LecturerLogInController::class, 'showLoginForm'])->name('lecturer.login');
 Route::post('lecturer/login', [LecturerLogInController::class, 'login'])->name('lecturer.login.submit');
 

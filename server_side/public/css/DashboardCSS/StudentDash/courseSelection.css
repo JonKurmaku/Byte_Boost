@@ -13,11 +13,14 @@ table {
     width: calc(100% - 40px); /* Adjust space from the edge of the browser page */
     border-collapse: collapse;
     margin-bottom: 20px;
-}
+    }
+    .enrolled-table td{
+        background-color: white;
+    }
 
 .enrolled-table th,
 .add-table th {
-    background-color: #007bff; /* Blue background for table headers */
+     /* Blue background for table headers */
     color: #ffffffb7;
 }
 
@@ -25,6 +28,7 @@ table {
     max-height: 200px; /* Limit height for the scrollable table */
     overflow-y: auto; /* Add vertical scrollbar if needed */
     overflow-x: hidden; 
+    position: absolute;
 }
 
 th, td {
