@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>Lecturer Login</h1>
-    <form id="lecturer-login-form" method="POST" action="{{  route('lecturer.login.submit') }}">
+    <form id="lecturer-login-form" onsubmit="validateForm()" method="POST" action="{{  route('lecturer.login.submit') }}">
         @csrf 
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username" required><br>
@@ -26,6 +26,21 @@
 
 
     <script src="script.js"></script>
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+           
+
+            if (username === "" || password === "" ) {
+                alert("Please enter both username and password!");
+                return false;
+            }
+           
+            alert("You logged in successfully!");
+            return true;
+        }
+    </script>
     <script>
 
     </script>

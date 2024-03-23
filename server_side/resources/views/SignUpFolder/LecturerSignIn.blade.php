@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>Lecturer Registration</h2>
-        <form id="lecturer-registration-form" method="POST" action="{{ route('lecturer.store') }}">
+        <form id="lecturer-registration-form" onsubmit="validateForm()" method="POST" action="{{ route('lecturer.store') }}">
             @csrf
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" required><br>
@@ -42,5 +42,31 @@
         </form>
     </div>
 <script src="{{asset('js/SignUpJS/lecturerSignUp.js')}}"></script>
+<script>
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm_password").value;
+        var experience = document.getElementById("experience").value;
+        
+
+            if (username === "" || email === "" || password === "" || confirmPassword === "" || experience === "") {
+                alert("All fields are required.");
+                return false;
+            }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }   
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password)) {
+        alert("Password must contain at least one lowercase letter, one uppercase letter, one digit, and be at least 8 characters long.");
+        return false;
+    }
+        alert("You signed up successfully!Click OK to continue!");
+        return true;
+    }
+</script>
 </body>
 </html>

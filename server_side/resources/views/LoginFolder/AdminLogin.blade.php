@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Administrator Login</h1>
-    <form id="admin-login-form"  method="POST" action="{{  route('admin.login.submit') }}">
+    <form id="admin-login-form" onsubmit="validateForm()" method="POST" action="{{  route('admin.login.submit') }}">
     @csrf
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
@@ -18,5 +18,19 @@
     </form>
 
     <script src="script.js"></script>
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === "" || password === "") {
+                alert("Please enter both username and password.");
+                return false;
+            }
+           
+            alert("You logged in successfully!");
+            return true;
+        }
+    </script>
 </body>
 </html>
