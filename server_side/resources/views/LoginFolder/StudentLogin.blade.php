@@ -12,16 +12,21 @@
 </head>
 <body>
     <h1>Student Login</h1>
-    <form id="student-login-form" onsubmit="validateForm()" method="POST" action="{{  route('student.login.submit') }}">
+    <form id="student-login-form" onsubmit="validateForm(event)" method="POST" action="{{  route('student.login.submit') }}">
         @csrf
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <span style="color:red;" id="err-username"></span>
+        <br>
+        <br>
         <!--
         <label for="student-id">Student ID:</label><br>
         <input type="text" id="student-id" name="student-id"><br>
 -->
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <span style="color:red;" id="err-password"></span>
+        <br><br>
         <input type="submit" value="Login"><br><br> <br>
       <!-- <input type="submit" value="Login"> -->
         <!-- <a href="SignIn.html" id="signup">Haven't you registered yet? Sign up </a> -->
@@ -29,21 +34,6 @@
         
     </form>
 
-    <script src="script.js"></script>
-    <script>
-        function validateForm() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            
-
-            if (username === "" || password === "" ) {
-                alert("Please enter both username and password!");
-                return false;
-            }
-           
-            alert("You logged in successfully!");
-            return true;
-        }
-    </script>
+    <script src="{{asset('js/LogInValidation/studentVal.js')}}"></script>
 </body>
 </html>

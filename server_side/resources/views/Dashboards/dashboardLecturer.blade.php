@@ -26,7 +26,7 @@
       <h2><i class="fas fa-user"></i>Lecturer Information</h2>
       <p><i class="fas fa-coffee"></i> <strong>Name:</strong>{{ auth()->guard('lecturer')->user()->first_name }} {{ auth()->guard('lecturer')->user()->last_name }}</p>
       <p><i class="fas fa-id-card"></i> <strong>Lecturer ID:</strong>{{auth()->guard('lecturer')->user()->id}}</p>
-      <p><i class="fas fa fa-institution"></i> <strong>Qualification:</strong>{{auth()->guard('lecturer')->user()->qualification}}<br></p>
+      <p><i class="fas fa fa-institution"></i> <strong>Department:</strong><br>{{auth()->guard('lecturer')->user()->department}}<br></p>
     </div>
     <div class="profile-actions">
       <a id="edit-profile-btn">Edit Profile</a>

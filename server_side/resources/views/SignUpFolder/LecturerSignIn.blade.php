@@ -24,13 +24,13 @@
             <input type="password" id="confirm_password" name="password_confirmation" required><br>
 
             <label for="first_name">First Name:</label><br>
-            <input type="text" id="first_name" name="first_name"><br>
+            <input type="text" id="first_name" name="first_name" required><br>
 
             <label for="last_name">Last Name:</label><br>
-            <input type="text" id="last_name" name="last_name"><br>
+            <input type="text" id="last_name" name="last_name" required><br>
 
-            <label for="qualification">Qualification:</label><br>
-            <input type="text" id="qualification" name="qualification"><br>
+            <label for="department">Department:</label><br>
+            <input type="text" id="department" name="department" required><br>
 
             <label for="specialization">Specialization:</label><br>
             <input type="text" id="specialization" name="specialization"><br>

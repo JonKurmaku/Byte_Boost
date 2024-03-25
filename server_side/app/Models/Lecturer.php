@@ -17,7 +17,7 @@ class Lecturer extends Model implements Authenticatable
         'password',
         'first_name',
         'last_name',
-        'qualification',
+        'department',
         'specialization',
         'experience',
     ];

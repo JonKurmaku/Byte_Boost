@@ -8,29 +8,20 @@
 </head>
 <body>
     <h1>Administrator Login</h1>
-    <form id="admin-login-form" onsubmit="validateForm()" method="POST" action="{{  route('admin.login.submit') }}">
+    <form id="admin-login-form" onsubmit="validateForm(event)" method="POST" action="{{  route('admin.login.submit') }}">
     @csrf
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>
+        <span style="color:red;" id="err-username"></span>
+        
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
+        <input type="password" id="password" name="password"><br>
+        <span style="color:red;" id="err-password"></span>
+        <br><br>
         <input type="submit" value="Login">
     </form>
 
-    <script src="script.js"></script>
-    <script>
-        function validateForm() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            if (username === "" || password === "") {
-                alert("Please enter both username and password.");
-                return false;
-            }
-           
-            alert("You logged in successfully!");
-            return true;
-        }
-    </script>
+    <script src="{{asset('js/LogInValidation/adminVal.js')}}"></script>
+    
 </body>
 </html>

@@ -11,38 +11,22 @@
 </head>
 <body>
     <h1>Lecturer Login</h1>
-    <form id="lecturer-login-form" onsubmit="validateForm()" method="POST" action="{{  route('lecturer.login.submit') }}">
+    <form id="lecturer-login-form" onsubmit="validateForm(event)" method="POST" action="{{  route('lecturer.login.submit') }}">
         @csrf 
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-      <!--  <label for="employee-id">Employee ID:</label><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <span style="color:red;" id="err-username"></span>
+        <br>
+        <!--  <label for="employee-id">Employee ID:</label><br>
         <input type="text" id="employee-id" name="employee-id" required><br>
 -->
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <span style="color:red;" id="err-password"></span>
+        <br><br>
         <input type="submit" value="Login"><br><br>
         <p class="message">Haven't registered yet? <a href="{{ url('/LecturerSignUp') }}" id="signup">Sign up</a></p>
     </form>
-
-
-    <script src="script.js"></script>
-    <script>
-        function validateForm() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-           
-
-            if (username === "" || password === "" ) {
-                alert("Please enter both username and password!");
-                return false;
-            }
-           
-            alert("You logged in successfully!");
-            return true;
-        }
-    </script>
-    <script>
-
-    </script>
+    <script src="{{asset('js/LogInValidation/lecturerVal.js')}}"></script>
 </body>
 </html>

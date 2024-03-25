@@ -25,12 +25,10 @@ class StudentController extends Controller
             'interests' => 'nullable|string'
         ]);
 
-        // Hash the password before storing it in the database
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        // Create a new student instance and persist it to the database
         Student::create($validatedData);
 
-        return redirect()->back()->with('success', 'Student created successfully');
+        return redirect('/student/login')->with('success', 'Student created successfully');
     }
 }
