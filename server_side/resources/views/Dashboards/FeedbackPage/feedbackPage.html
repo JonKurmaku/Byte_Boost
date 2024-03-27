@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecturers Search</title>
+<link rel="stylesheet" type="text/css" href="feedbackPage.css">
+<link rel="stylesheet" href="dashboardCSS.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="#" class="active">Dashboard</a>
+        <a href="../courseSelection.html">Courses Selected</a>
+        <a href="grades.html">Grades</a>
+        <a href="#">Mentorship Program</a>
+        <a href="feedbackPage.html">Feedback Page</a>
+      </div>
+    
+<h2>Lecturers Search</h2>
+
+<div class="dropdown">
+  <select id="lecturerSelect" onchange="showPopup()">
+    <option value="">Select Lecturer</option>
+  </select>
+</div>
+
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <input type="text" id="searchInput" onkeyup="searchLecturers()" placeholder="Search for lecturers...">
+    <ul id="lecturerList"></ul>
+  </div>
+</div>
+
+<script src="feedbckPage.js"></script>
+</body>
+</html>
