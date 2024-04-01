@@ -81,6 +81,16 @@ Route::get('/student/dashboard/courseSelection', function () {
     return view('/Dashboards/CourseSelection/courseSelection'); 
 })->name('/student/dashboard/courseSelection');
 
+Route::get('/student/dashboard/courseSelection', function () {
+    return view('/Dashboards/CourseSelection/courseSelection'); 
+})->name('/student/dashboard/courseSelection');
+
+Route::get('/student/dashboard/courseSelection', function () {
+    return view('/Dashboards/CourseSelection/courseSelection'); 
+})->name('/student/dashboard/courseSelection');
+
+
+
 
 //Request Routes
 

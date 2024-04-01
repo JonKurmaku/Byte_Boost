@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="dashboardCSS.css">
 </head>
 <body>
-
-    <div class="navbar">
-        <a href="#" class="active">Dashboard</a>
-        <a href="../courseSelection.html">Courses Selected</a>
-        <a href="grades.html">Grades</a>
+@if(auth()->guard('student')->check())
+<div class="navbar">
+        <a href="{{url('/student/dashboard')}}" class="active" >Dashboard</a>
+        <a href="{{url('/student/dashboard/courseSelection')}}" >Course Overview</a>
+        <a href="#">Grades</a>
         <a href="#">Mentorship Program</a>
-        <a href="feedbackPage.html">Feedback Page</a>
-      </div>
+        <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
+</div>
     
 <h2>Lecturers Search</h2>
 
@@ -32,7 +32,9 @@
     <ul id="lecturerList"></ul>
   </div>
 </div>
-
+@else
+<h1 style="color:white">User session ended</h1>
+@endif
 <script src="feedbckPage.js"></script>
 </body>
 </html>

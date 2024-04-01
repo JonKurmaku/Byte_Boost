@@ -10,10 +10,11 @@
 </head>
 
 <body>
+@if(auth()->guard('admin')->check())
 <div class="navbar">
-  <a href="{{url('/admin/dashboard')}}">Dashboard</a>
-  <a href="#" class="active">User Activity Log</a>
-  <a href="#">Server Log</a>
+  <a href="{{url('/admin/dashboard')}}" >Dashboard</a>
+  <a href="{{url('/admin/dashboard/activity')}}" class="active">User Activity Log</a>
+  <a href="{{url('/admin/dashboard/server-logs')}}">Server Log</a>
 </div>
 <div class="dashboard">
   <div class="sidebar">
@@ -53,6 +54,9 @@
     </div>
   </div>
 </div>
+@else
+<h1 style="color:white"> User session ended </h1>
+@endif
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
