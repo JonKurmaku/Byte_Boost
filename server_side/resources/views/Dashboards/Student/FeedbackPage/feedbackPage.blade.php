@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lecturers Search</title>
 <link rel="stylesheet" type="text/css" href="feedbackPage.css">
-<link rel="stylesheet" href="dashboardCSS.css">
+<link rel="stylesheet" href="{{asset("css/DashboardCSS/StudentDash/feedbackPage.css")}}">
+    <link rel="stylesheet" href="{{asset("css/DashboardCSS/StudentDash/DashboardStyle.css")}}">
 </head>
 <body>
 @if(auth()->guard('student')->check())
 <div class="navbar">
-        <a href="{{url('/student/dashboard')}}" class="active" >Dashboard</a>
+<a href="{{url('/student/dashboard')}}"  >Dashboard</a>
         <a href="{{url('/student/dashboard/courseSelection')}}" >Course Overview</a>
-        <a href="#">Grades</a>
+        <a href="{{url('/student/dashboard/grades')}}" class="active">Grades</a>
         <a href="#">Mentorship Program</a>
         <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
 </div>
@@ -35,6 +36,6 @@
 @else
 <h1 style="color:white">User session ended</h1>
 @endif
-<script src="feedbckPage.js"></script>
+<script src="{{asset('js/DashboardsJS/feedback.js')}}"></script>
 </body>
 </html>

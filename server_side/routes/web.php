@@ -63,31 +63,31 @@ Route::get('/StudentSignUp', function () {
 //Route::group(['middleware' => 'refreshPageCache'], function () {
 
 Route::get('/lecturer/dashboard', function () {
-    return view('/Dashboards/dashboardLecturer'); 
+    return view('/Dashboards/Lecturer/dashboardLecturer'); 
 })->name('/lecturer/dashboard');
 
 
 Route::get('/student/dashboard', function () {
-    return view('/Dashboards/dashboardStd'); 
+    return view('/Dashboards/Student/dashboardStd'); 
 })->name('/student/dashboard');
 
 Route::get('/admin/dashboard', function () {
-    return view('test_dashboard_admin'); 
+    return view('/Dashboards/Admin/dashboardAdmin.blade.php'); 
 })->name('/admin/dashboard');
 
 //});
 
 Route::get('/student/dashboard/courseSelection', function () {
-    return view('/Dashboards/CourseSelection/courseSelection'); 
+    return view('/Dashboards/Student/CourseSelection/courseSelection'); 
 })->name('/student/dashboard/courseSelection');
 
-Route::get('/student/dashboard/courseSelection', function () {
-    return view('/Dashboards/CourseSelection/courseSelection'); 
-})->name('/student/dashboard/courseSelection');
+Route::get('/student/dashboard/feedback', function () {
+    return view('/Dashboards/Student/FeedbackPage/feedbackPage'); 
+})->name('/student/dashboard/feedback');
 
-Route::get('/student/dashboard/courseSelection', function () {
-    return view('/Dashboards/CourseSelection/courseSelection'); 
-})->name('/student/dashboard/courseSelection');
+Route::get('/student/dashboard/grades', function () {
+    return view('/Dashboards/Student/Grades/grades'); 
+})->name('/student/dashboard/grades');
 
 
 

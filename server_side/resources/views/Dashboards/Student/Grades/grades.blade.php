@@ -5,17 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Course Information</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link rel="stylesheet" href="grades.css">
-<link rel="stylesheet" href="dashboardCSS.css">
+<link rel="stylesheet" href="{{asset("css/DashboardCSS/StudentDash/grades.css")}}">
+<link rel="stylesheet" href="{{asset("css/DashboardCSS/StudentDash/DashboardStyle.css")}}">
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="#" class="active">Dashboard</a>
-        <a href="../courseSelection.html">Courses Selected</a>
-        <a href="grades.html">Grades</a>
+@if(auth()->guard('student')->check())
+<div class="navbar">
+        <a href="{{url('/student/dashboard')}}"  >Dashboard</a>
+        <a href="{{url('/student/dashboard/courseSelection')}}" >Course Overview</a>
+        <a href="{{url('/student/dashboard/grades')}}" class="active">Grades</a>
         <a href="#">Mentorship Program</a>
-        <a href="feedbackPage.html">Feedback Page</a>
+        <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
       </div>
     
       <h2>Course Information</h2>
@@ -49,7 +50,9 @@
 <h2>Passed Courses vs Selected Courses</h2>
 
 <canvas id="courseChart" width="400" height="200" style="color: '#ffffffb7';"></canvas>
-
+@else
+<h1 style="color:white"> User session ended </h1>
+@endif
 <script>
     var passedCourses = [85, 70, 95, 60, 80]; 
     var selectedCourses = ["Course 1", "Course 2", "Course 3", "Course 4", "Course 5"]; 
