@@ -39,6 +39,7 @@
             <input type="number" id="experience" name="experience" min="0"><br>
 
             <input type="submit" value="Register">
+            <p class="message">Already have an account? <a href="{{ url('/LecturerLogin')}}" id="log">Log in</a></p>
         </form>
     </div>
 <script src="{{asset('js/SignUpJS/lecturerSignUp.js')}}"></script>

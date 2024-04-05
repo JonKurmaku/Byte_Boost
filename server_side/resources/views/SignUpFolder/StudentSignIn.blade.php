@@ -51,6 +51,7 @@
        <!-- <label for="avatar">Avatar:</label><br>
         <input type="file" id="avatar" name="avatar" accept="image/*"><br>-->
         <input type="submit" value="Register">
+        <p class="message">Already have an account? <a href="{{ url('/StudentLogin')}}" id="log">Log in</a></p>
     </form>
 </div>
 <script>

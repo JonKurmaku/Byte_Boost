@@ -68,7 +68,7 @@ input[type="submit"] {
 
 /* Specific styles for lecturer login */
 #lecturer-login-form {
-    background-color: rgba(0, 0, 0, 0.311); /* Semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
