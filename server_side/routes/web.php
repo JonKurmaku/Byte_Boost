@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\Auth\ProfileControllers\LecturerProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\SignUpControllers\LecturerController;
 use App\Http\Controllers\SignUpControllers\StudentController;
+
 use App\Http\Controllers\Auth\LogInControllers\LecturerLogInController;
 use App\Http\Controllers\Auth\LogInControllers\StudentLogInController;
 use App\Http\Controllers\Auth\LogInControllers\AdminLogInController;
-use App\Http\Controllers\Auth\ProfileControllers\StudentProfileController;
 
+use App\Http\Controllers\Auth\ProfileControllers\StudentProfileController;
+use App\Http\Controllers\Auth\ProfileControllers\LecturerProfileController;
+use App\Http\Controllers\Auth\ProfileControllers\AdminProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +74,7 @@ Route::get('/student/dashboard', function () {
 })->name('/student/dashboard');
 
 Route::get('/admin/dashboard', function () {
-    return view('/Dashboards/Admin/dashboardAdmin.blade.php'); 
+    return view('/Dashboards/Admin/dashboardAdmin'); 
 })->name('/admin/dashboard');
 
 //});
@@ -90,6 +92,14 @@ Route::get('/student/dashboard/grades', function () {
 })->name('/student/dashboard/grades');
 
 
+Route::get('/admin/dashboard/activity', function () {
+    return view('/Dashboards/Admin/AdminLogs/userActivityLog'); 
+})->name('/admin/dashboard/activity');
+
+
+Route::get('/admin/dashboard/server-logs', function () {
+    return view('/Dashboards/Admin/AdminLogs/serverLog'); 
+})->name('/admin/dashboard/server-logs');
 
 
 //Request Routes
@@ -135,3 +145,12 @@ Route::get('admin/logout', [AdminLogInController::class, 'logout'])->name('admin
 Route::put('/student/dashboard', [StudentProfileController::class, 'update']);
 Route::put('/lecturer/dashboard', [LecturerProfileController::class, 'update']);
 
+
+
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admin/dashboard/activity', [AdminProfileController::class, 'userActivity'])->name('admin.dashboard.activity');
+});
+
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admin/dashboard/server-logs', [AdminProfileController::class, 'serverLog'])->name('admin.dashboard.server-logs');
+});

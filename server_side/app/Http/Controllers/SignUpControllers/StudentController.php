@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Http\Controllers\Controller;
-
+use App\Models\ServerLog;
 
 class StudentController extends Controller
 {
@@ -28,6 +28,14 @@ class StudentController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         Student::create($validatedData);
+
+        $log = new ServerLog();
+        $log->username = $validatedData['username'];
+        $log->user_level = 'Student'; 
+        $log->request_description = 'Create Profile'; 
+        $log->http_request_type = 'POST'; 
+        $log->request_time = now(); 
+        $log->save(); 
 
         return redirect('/student/login')->with('success', 'Student created successfully');
     }

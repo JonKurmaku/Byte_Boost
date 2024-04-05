@@ -7,7 +7,7 @@ use App\Models\Lecturer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\ServerLog;
 class LecturerProfileController extends Controller
 {
     public function update(Request $request)
@@ -19,7 +19,13 @@ class LecturerProfileController extends Controller
             'n_username' => 'required|string|max:255|unique:students',
             'n_password' => 'required|string|min:6', 
         ]);
-    */
+    */  $log = new ServerLog();
+    $log->username = $user->username;
+    $log->user_level = 'Lecturer'; 
+    $log->request_description = 'Update Profile Credentials'; 
+    $log->http_request_type = 'PUT'; 
+    $log->request_time = now(); 
+    $log->save(); 
         
         $user->username = $request->input('n_username');
         $user->password = Hash::make($request->input('n_password')); 

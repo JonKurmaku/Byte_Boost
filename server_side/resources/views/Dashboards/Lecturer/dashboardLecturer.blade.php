@@ -65,6 +65,6 @@
 <h1 style="color:white"> User session ended </h1>
 @endif
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{{asset('js\DashboardsJS\profDashboard.js')}}"></script>
+<script src="{{asset('js\DashboardsJS\Lecturer\profDashboard.js')}}"></script>
 </body>
 </html>

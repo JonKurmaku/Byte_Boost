@@ -72,7 +72,7 @@
 <h1 style="color:white"> User session ended </h1>
 @endif
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{{asset('js/DashboardsJS/stdDashboard.js')}}"></script>
+<script src="{{asset('js\DashboardsJS\Student\stdDashboard.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

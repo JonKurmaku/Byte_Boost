@@ -36,6 +36,6 @@
 @else
 <h1 style="color:white">User session ended</h1>
 @endif
-<script src="{{asset('js/DashboardsJS/feedback.js')}}"></script>
+<script src="{{asset('js\DashboardsJS\Student\feedback.js')}}"></script>
 </body>
 </html>

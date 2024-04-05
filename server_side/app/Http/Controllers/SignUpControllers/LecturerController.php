@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Lecturer;
 use App\Http\Controllers\Controller;
-
+use App\Models\ServerLog;
 class LecturerController extends Controller
 {
     public function store(Request $request)
@@ -26,6 +26,14 @@ class LecturerController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         Lecturer::create($validatedData);
+
+        $log = new ServerLog();
+    $log->username = $validatedData['username'];
+    $log->user_level = 'Lecturer'; 
+    $log->request_description = 'Create Profile'; 
+    $log->http_request_type = 'POST'; 
+    $log->request_time = now(); 
+    $log->save(); 
 
         return redirect('/lecturer/login')->with('success', 'Student created successfully');
     }
