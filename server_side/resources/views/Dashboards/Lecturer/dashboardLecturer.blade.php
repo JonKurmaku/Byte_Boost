@@ -14,7 +14,7 @@
 @if(auth()->guard('lecturer')->check())
 <div class="navbar">
   <a href="{{url('/lecturer/dashboard')}}" class="active">Dashboard</a>
-  <a href="#">Course Page</a>
+  <a href="{{url('/lecturer/dashboard/courses')}}">Course Page</a>
   <a href="#">Student List</a>
   <a href="#">Evaluation</a>
   <a href="#">Mentorship</a>

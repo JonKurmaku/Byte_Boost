@@ -21,4 +21,10 @@ class Lecturer extends Model implements Authenticatable
         'specialization',
         'experience',
     ];
+
+    public function courses()
+    {
+        return $this->hasMany('App\Models\Course', 'lecturer_id');
+    }
+
 }

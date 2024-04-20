@@ -20,7 +20,7 @@
   <div class="sidebar">
     <div class="profile-info">
       <h2><i class="fas fab fa-black-tie"></i>Admin Information</h2>
-      <p><i class="fas fa-bullhorn"></i> <strong>Name:</strong>{{ auth()->guard('admin')->user()->first_name }} {{ auth()->guard('admin')->user()->last_name }}</p>
+      <p><i class="fas fa-bullhorn"></i> <strong>Name:</strong>{{ auth()->guard('admin')->user()->username }}</p>
       <p><i class="fas fa-id-card"></i> <strong>Admin ID:</strong>{{auth()->guard('admin')->user()->id}}</p>
     </div>
     <div class="profile-actions">

@@ -65,9 +65,9 @@ html {
 }
 
 /* Table style */
-.table-container {
-    max-height: 300px; /* Set the maximum height of the container */
+.container {
     overflow: auto; /* Add scroll if content exceeds container height */
+
 }
 
 table {

@@ -91,6 +91,11 @@ Route::get('/student/dashboard/grades', function () {
     return view('/Dashboards/Student/Grades/grades'); 
 })->name('/student/dashboard/grades');
 
+/*
+Route::get('/lecturer/dashboard/courses', function () {
+    return view('/Dashboards/Lecturer/coursePage'); 
+})->name('/lecturer/dashboard/courses');
+*/
 
 Route::get('/admin/dashboard/activity', function () {
     return view('/Dashboards/Admin/AdminLogs/userActivityLog'); 
@@ -146,6 +151,9 @@ Route::put('/student/dashboard', [StudentProfileController::class, 'update']);
 Route::put('/lecturer/dashboard', [LecturerProfileController::class, 'update']);
 
 
+Route::middleware(['auth:lecturer'])->group(function () {
+    Route::get('/lecturer/dashboard/courses', [LecturerProfileController::class, 'showCourses'])->name('lecturer.courses');
+});
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard/activity', [AdminProfileController::class, 'userActivity'])->name('admin.dashboard.activity');
@@ -154,3 +162,7 @@ Route::middleware(['auth:admin'])->group(function () {
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard/server-logs', [AdminProfileController::class, 'serverLog'])->name('admin.dashboard.server-logs');
 });
+
+Route::post('/lecturer/dashboard/add-courses', [LecturerProfileController::class, 'addCourses']);
+
+Route::delete('/lecturer/dashboard/courses/{course_id}', [LecturerProfileController::class, 'deleteCourse'])->name('lecturer.courses.delete');

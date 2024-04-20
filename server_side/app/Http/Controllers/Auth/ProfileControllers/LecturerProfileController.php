@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ServerLog;
+use App\Models\Course;
+
 class LecturerProfileController extends Controller
 {
     public function update(Request $request)
@@ -34,4 +36,61 @@ class LecturerProfileController extends Controller
 
         return response()->json(['message' => 'Profile updated successfully'], 200);
     }
+
+
+
+public function showCourses() {
+    
+    $lecturerId = auth()->guard('lecturer')->user()->id;
+
+    $lecturerCourses = Course::where('lecturer_id', $lecturerId)->get();
+
+    return view('\Dashboards\Lecturer\coursePage', compact('lecturerCourses'));
+}
+
+
+public function addCourses(Request $request){
+    $user=Auth::guard('lecturer')->user();
+    
+    $course = new Course();
+    $course->lecturer_id = auth()->guard('lecturer')->user()->id; 
+    $course->course_id = $request['course_id'];
+    $course->course_name = $request['course_name'];
+    $course->num_students_chosen = 0;
+    $course->max_students = $request['max_students'];
+
+    $course->save();
+
+    $log = new ServerLog();
+    $log->username = $user->username;
+    $log->user_level = 'Lecturer'; 
+    $log->request_description = 'Add Course'; 
+    $log->http_request_type = 'POST'; 
+    $log->request_time = now(); 
+    $log->save(); 
+
+    return response()->json(['message' => 'Course added successfully'], 201);
+}
+
+
+public function deleteCourse($id)
+{
+    $user=Auth::guard('lecturer')->user();
+
+    $course = Course::where('course_id', $id)->firstOrFail();
+    $course->delete();
+
+
+    $log = new ServerLog();
+    $log->username = $user->username;
+    $log->user_level = 'Lecturer'; 
+    $log->request_description = 'Delete Course'; 
+    $log->http_request_type = 'DELETE'; 
+    $log->request_time = now(); 
+    $log->save(); 
+
+    return response()->json(['message' => 'Course deleted successfully'], 200);
+}
+
+
 }
