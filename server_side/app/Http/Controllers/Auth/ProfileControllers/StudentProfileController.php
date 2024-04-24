@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ServerLog;
 use App\Models\Course;
+use App\Models\Lecturer;
+use App\Models\Feedbacks;
 
 class StudentProfileController extends Controller
 {
@@ -65,9 +67,6 @@ class StudentProfileController extends Controller
     }
     
 
-    
-
-
     public function addCourse(Request $request) {
         $courseId = $request->input('course_id');
         $studentId=Auth::guard('student')->user()->id;
@@ -98,5 +97,44 @@ class StudentProfileController extends Controller
         }
     }
 
+
+    public function fetchLecturers()
+    {
+        $lecturers = Lecturer::all('id', 'first_name', 'last_name'); 
+        return response()->json($lecturers);
+    }
+
+    public function fetchLecturerCourses($lecturerId)
+    {
+        $lecturer = Lecturer::findOrFail($lecturerId);
+        $courses = $lecturer->courses()->get(['id', 'course_name']); 
+        return response()->json($courses);
+    }
+
+
+
+public function giveFeedback(Request $request)
+{
+    $user = Auth::guard('student')->user();
+    $studentId = $user->id;
+    $courseId = $request->input('course_id');
+    $comment = $request->input('comment');
+    $rating = $request->input('rating');
+
+    $feedback = new Feedbacks();
+    $feedback->student_id = $studentId;
+    $feedback->course_id = $courseId;
+    $feedback->comment = $comment;
+    $feedback->rating = $rating;
+    $feedback->save();
+
+    $log = new ServerLog();
+    $log->username = $user->username;
+    $log->user_level = 'Student'; 
+    $log->request_description = 'Send Course Feedback'; 
+    $log->http_request_type = 'POST'; 
+    $log->request_time = now(); 
+    $log->save(); 
+}
 
 }

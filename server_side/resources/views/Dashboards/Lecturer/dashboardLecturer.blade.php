@@ -18,7 +18,7 @@
   <a href="#">Student List</a>
   <a href="#">Evaluation</a>
   <a href="#">Mentorship</a>
-  <a href="#">Feedback Page</a>
+  <a href="{{url('/lecturer/feedback')}}">Feedback Page</a>
 </div>
 <div class="dashboard">
   <div class="sidebar">

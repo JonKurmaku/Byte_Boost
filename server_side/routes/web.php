@@ -62,21 +62,17 @@ Route::get('/StudentSignUp', function () {
 });
 
 
-//Route::group(['middleware' => 'refreshPageCache'], function () {
-
 Route::get('/lecturer/dashboard', function () {
     return view('/Dashboards/Lecturer/dashboardLecturer'); 
 })->name('/lecturer/dashboard');
 
 
 Route::get('/student/dashboard', [StudentProfileController::class, 'dashboardCourses']) 
-->name('/student/dashboard');
+->name('/student/dashboard');;
 
 Route::get('/admin/dashboard', function () {
     return view('/Dashboards/Admin/dashboardAdmin'); 
 })->name('/admin/dashboard');
-
-//});
 
 
 Route::get('/student/dashboard/courseSelection', [StudentProfileController::class, 'showCourses'])
@@ -88,12 +84,7 @@ Route::get('/student/dashboard/feedback', function () {
 })->name('/student/dashboard/feedback');
 
 Route::get('/student/dashboard/grades', [StudentProfileController::class, 'gradesCourses']) 
-->name('/student/dashboard');
-/*
-Route::get('/lecturer/dashboard/courses', function () {
-    return view('/Dashboards/Lecturer/coursePage'); 
-})->name('/lecturer/dashboard/courses');
-*/
+->name('/student/dashboard/grades');
 
 Route::get('/admin/dashboard/activity', function () {
     return view('/Dashboards/Admin/AdminLogs/userActivityLog'); 
@@ -111,22 +102,6 @@ Route::post('lecturers', [LecturerController::class, 'store'])->name('lecturer.s
 Route::post('students', [StudentController::class, 'store'])->name('student.store');
 
 
-
-/*
-
-Route::get('lecturer/login', [LecturerLogInController::class, 'showLoginForm'])->name('lecturer.login');
-Route::post('lecturer/login', [LecturerLogInController::class, 'login'])->name('lecturer.login.submit');
-    
-Route::get('student/login', [StudentLogInController::class, 'showLoginForm'])->name('student.login');
-Route::post('student/login', [StudentLogInController::class, 'login'])->name('student.login.submit');
-    
-    
-Route::get('admin/login', [AdminLogInController::class, 'showLoginForm'])->name('admin.login');
-Route::post('admin/login', [AdminLogInController::class, 'login'])->name('admin.login.submit');
-
-});
-
-*/
 Route::get('lecturer/login', [LecturerLogInController::class, 'showLoginForm'])->name('lecturer.login');
 Route::post('lecturer/login', [LecturerLogInController::class, 'login'])->name('lecturer.login.submit');
 
@@ -166,3 +141,13 @@ Route::post('/lecturer/dashboard/add-courses', [LecturerProfileController::class
 Route::delete('/lecturer/dashboard/courses/{course_id}', [LecturerProfileController::class, 'deleteCourse'])->name('lecturer.courses.delete');
 
 Route::post('/student/course/add', [StudentProfileController::class, 'addCourse'])->name('student.course.add');
+
+
+Route::get('/student/dashboard/feedback-lecturers', [StudentProfileController::class, 'fetchLecturers'])->name('student.feedback.lecturersName');
+
+Route::get('/student/dashboard/feedback-courses/{lecturerId}', [StudentProfileController::class, 'fetchLecturerCourses'])->name('student.feedback.lecturersCourses');
+
+Route::post('/student/dashboard/send-feedback', [StudentProfileController::class, 'giveFeedback']);
+
+
+Route::get('/lecturer/feedback', [LecturerProfileController::class, 'showFeedback']);

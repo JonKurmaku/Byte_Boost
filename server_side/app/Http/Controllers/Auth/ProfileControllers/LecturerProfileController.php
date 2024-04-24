@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ServerLog;
 use App\Models\Course;
+use App\Models\Feedbacks;
 
 class LecturerProfileController extends Controller
 {
@@ -92,5 +93,15 @@ public function deleteCourse($id)
     return response()->json(['message' => 'Course deleted successfully'], 200);
 }
 
+public function showFeedback()
+{
+    $lecturer=Auth::guard('lecturer')->user();
+   
+    $feedback = Feedbacks::whereHas('course', function ($query) use ($lecturer) {
+        $query->where('lecturer_id', $lecturer->id);
+    })->get();
+
+    return view('\Dashboards\Lecturer\feedbackPage', compact('feedback'));
+}
 
 }
