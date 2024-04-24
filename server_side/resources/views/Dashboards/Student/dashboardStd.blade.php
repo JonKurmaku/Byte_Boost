@@ -13,9 +13,9 @@
 <body>
 @if(auth()->guard('student')->check())
 <div class="navbar">
-<a href="{{url('/student/dashboard')}}"  >Dashboard</a>
+<a href="{{url('/student/dashboard')}}" class="active">Dashboard</a>
         <a href="{{url('/student/dashboard/courseSelection')}}" >Course Overview</a>
-        <a href="{{url('/student/dashboard/grades')}}" class="active">Grades</a>
+        <a href="{{url('/student/dashboard/grades')}}">Grades</a>
         <a href="#">Mentorship Program</a>
         <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
       </div>
@@ -47,27 +47,18 @@
   </div>
 </div>
 
-  <div class="main-content">
+<div class="main-content">
+    @foreach ($chosenCourses as $course)
     <div class="chart">
-      <h3><i class="fas fa-chart-pie"></i> Course 1 Progress</h3>
-      <canvas id="course1Chart" width="200" height="200"></canvas>
-      <a href="../Courses/course3.html" class="btn">Add Course <i class="fa-solid fa-plus"></i></a>
-      <a href="../Courses/course1.html" class="btn">Go to Course Page <i class="fa-solid fa-arrow-right"></i></a>
+        <h3><i class="fas fa-chart-pie"></i>{{ $course->course_name }}</h3>
+        <canvas id="{{ $course->slug }}Chart" width="200" height="200"></canvas>
+        <a href="../Courses/{{ $course->slug }}.html" class="btn">Add Course <i class="fa-solid fa-plus"></i></a>
+        <a href="../Courses/{{ $course->slug }}.html" class="btn">Go to Course Page <i class="fa-solid fa-arrow-right"></i></a>
     </div>
-    <div class="chart">
-      <h3><i class="fas fa-chart-pie"></i> Course 2 Progress</h3>
-      <canvas id="course2Chart" width="200" height="200"></canvas>
-      <a href="../Courses/course2.html" class="btn">Add Course<i class="fa-solid fa-plus"></i></a>
-      <a href="../Courses/course3.html" class="btn">Go to Course Page <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div class="chart">
-      <h3><i class="fas fa-chart-pie"></i> Course 3 Progress</h3>
-      <canvas id="course3Chart" width="200" height="200"></canvas>
-      <a href="../Courses/course3.html" class="btn">Add Course <i class="fa-solid fa-plus"></i></a>
-      <a href="../Courses/course3.html" class="btn">Go to Course Page <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-  </div>
+    @endforeach
 </div>
+
+
 @else
 <h1 style="color:white"> User session ended </h1>
 @endif

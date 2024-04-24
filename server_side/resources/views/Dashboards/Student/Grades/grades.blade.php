@@ -21,32 +21,25 @@
     
       <h2>Course Information</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Course Name</th>
-                <th>Lecturer Name</th>
-                <th>Grades</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Course 1</td>
-                <td>Lecturer A</td>
-                <td>85%</td>
-            </tr>
-            <tr>
-                <td>Course 2</td>
-                <td>Lecturer B</td>
-                <td>70%</td>
-            </tr>
-            <tr>
-                <td>Course 3</td>
-                <td>Lecturer C</td>
-                <td>95%</td>
-            </tr>
-        </tbody>
-    </table>
+      <table>
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Lecturer Name</th>
+            <th>Grades</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($coursesData as $course)
+        <tr>
+            <td>{{ $course->course_name }}</td>
+            <td>{{ $course->lecturer_name}}</td>
+            <td> Grade PlaceHolder</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
 <h2>Passed Courses vs Selected Courses</h2>
 
 <canvas id="courseChart" width="400" height="200" style="color: '#ffffffb7';"></canvas>

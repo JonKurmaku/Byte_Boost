@@ -69,9 +69,8 @@ Route::get('/lecturer/dashboard', function () {
 })->name('/lecturer/dashboard');
 
 
-Route::get('/student/dashboard', function () {
-    return view('/Dashboards/Student/dashboardStd'); 
-})->name('/student/dashboard');
+Route::get('/student/dashboard', [StudentProfileController::class, 'dashboardCourses']) 
+->name('/student/dashboard');
 
 Route::get('/admin/dashboard', function () {
     return view('/Dashboards/Admin/dashboardAdmin'); 
@@ -79,18 +78,17 @@ Route::get('/admin/dashboard', function () {
 
 //});
 
-Route::get('/student/dashboard/courseSelection', function () {
-    return view('/Dashboards/Student/CourseSelection/courseSelection'); 
-})->name('/student/dashboard/courseSelection');
+
+Route::get('/student/dashboard/courseSelection', [StudentProfileController::class, 'showCourses'])
+    ->name('student.dashboard.courseSelection');
+
 
 Route::get('/student/dashboard/feedback', function () {
     return view('/Dashboards/Student/FeedbackPage/feedbackPage'); 
 })->name('/student/dashboard/feedback');
 
-Route::get('/student/dashboard/grades', function () {
-    return view('/Dashboards/Student/Grades/grades'); 
-})->name('/student/dashboard/grades');
-
+Route::get('/student/dashboard/grades', [StudentProfileController::class, 'gradesCourses']) 
+->name('/student/dashboard');
 /*
 Route::get('/lecturer/dashboard/courses', function () {
     return view('/Dashboards/Lecturer/coursePage'); 
@@ -166,3 +164,5 @@ Route::middleware(['auth:admin'])->group(function () {
 Route::post('/lecturer/dashboard/add-courses', [LecturerProfileController::class, 'addCourses']);
 
 Route::delete('/lecturer/dashboard/courses/{course_id}', [LecturerProfileController::class, 'deleteCourse'])->name('lecturer.courses.delete');
+
+Route::post('/student/course/add', [StudentProfileController::class, 'addCourse'])->name('student.course.add');

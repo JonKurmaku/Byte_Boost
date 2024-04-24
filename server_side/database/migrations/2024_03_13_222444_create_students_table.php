@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique()->default('')->nullable(false);
+            $table->string('username')->unique()->nullable(false);
             $table->string('email')->unique();
             $table->string('password');
             $table->string('first_name');
@@ -25,13 +25,18 @@ return new class extends Migration
             $table->string('interests')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('student_course', function (Blueprint $table) {
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+            $table->primary(['student_id', 'course_id']);
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+        Schema::dropIfExists('student_course');
         Schema::dropIfExists('students');
     }
 };

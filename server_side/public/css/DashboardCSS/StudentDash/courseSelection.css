@@ -3,7 +3,9 @@ body {
 }
 
 .container {
+    
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -21,7 +23,11 @@ table {
 .enrolled-table th,
 .add-table th {
      /* Blue background for table headers */
-    color: #ffffffb7;
+    color: #646262b7;
+}
+
+.enrolled-table td{
+    color:black;
 }
 
 .scrollable-table {

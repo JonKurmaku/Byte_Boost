@@ -13,9 +13,9 @@
 <div class="navbar">
 <a href="{{url('/student/dashboard')}}"  >Dashboard</a>
         <a href="{{url('/student/dashboard/courseSelection')}}" >Course Overview</a>
-        <a href="{{url('/student/dashboard/grades')}}" class="active">Grades</a>
+        <a href="{{url('/student/dashboard/grades')}}">Grades</a>
         <a href="#">Mentorship Program</a>
-        <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
+        <a href="{{url('/student/dashboard/feedback')}}" class="active">Feedback Page</a>
 </div>
     
 <h2>Lecturers Search</h2>
