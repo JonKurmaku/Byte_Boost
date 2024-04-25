@@ -12,7 +12,7 @@ use App\Http\Controllers\Auth\LogInControllers\AdminLogInController;
 use App\Http\Controllers\Auth\ProfileControllers\StudentProfileController;
 use App\Http\Controllers\Auth\ProfileControllers\LecturerProfileController;
 use App\Http\Controllers\Auth\ProfileControllers\AdminProfileController;
-
+use App\Http\Controllers\Auth\LectureController\CourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -151,3 +151,8 @@ Route::post('/student/dashboard/send-feedback', [StudentProfileController::class
 
 
 Route::get('/lecturer/feedback', [LecturerProfileController::class, 'showFeedback']);
+
+
+
+Route::get('/lectures/{slug}', [CourseController::class, 'show'])->name('lecture.show');
+

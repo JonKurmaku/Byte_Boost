@@ -52,11 +52,11 @@
     <div class="chart">
         <h3><i class="fas fa-chart-pie"></i>{{ $course->course_name }}</h3>
         <canvas id="{{ $course->slug }}Chart" width="200" height="200"></canvas>
-        <a href="../Courses/{{ $course->slug }}.html" class="btn">Add Course <i class="fa-solid fa-plus"></i></a>
-        <a href="../Courses/{{ $course->slug }}.html" class="btn">Go to Course Page <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="{{ route('lecture.show', $course->slug) }}" class="btn">Go to Lecture Page <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     @endforeach
 </div>
+
 
 
 @else

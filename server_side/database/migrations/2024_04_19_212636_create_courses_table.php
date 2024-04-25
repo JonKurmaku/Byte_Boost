@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedBigInteger('lecturer_id');
             $table->string('course_id')->unique();
             $table->string('course_name');
+            $table->string('slug')->unique(); 
             $table->unsignedInteger('num_students_chosen')->default(0);
             $table->unsignedInteger('max_students');
             $table->timestamps();
