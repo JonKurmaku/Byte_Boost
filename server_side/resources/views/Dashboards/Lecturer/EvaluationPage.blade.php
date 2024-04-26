@@ -4,113 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecturer Evaluation Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #000000, #00008B);
-            color: white;
-        }
-
-        table {
-            width: 100%;
-            margin: 20px 0;
-            border-collapse: collapse;
-           
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-           
-        }
-
-        th {
-            background-color: #fffcfc;
-            color: black;
-        }
-
-        button {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        #popup {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.4);
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .popup-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            width: 50%;
-            text-align: center;
-            position: relative;
-            color: black;
-        }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            cursor: pointer;
-            font-size: 24px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('css/DashboardCSS/LecturerDash/LecturerDashboardStyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/DashboardCSS/LecturerDash/LecturerEvaluation.css')}}">
 </head>
 <body>
-    <h1>Final Assessment Evaluation</h1>
-    <table id="evaluationTable">
-        <thead>
-            <tr>
-                <th>Course Name</th>
-                <th>Final Assessment</th>
-                <th>Evaluation Requests</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Calculus</td>
-                <td><button onclick="viewAssessment()">View</button></td>
-                <td><button onclick="showPopup()">Evaluate</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="saveGrades()">Save Grades</button>
-
-    <div id="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <p>List of students requesting evaluation for Calculus will go here.</p>
-        </div>
+    
+<body>
+@if(auth()->guard('lecturer')->check())
+<div class="navbar">
+  <a href="{{url('/lecturer/dashboard')}}" >Dashboard</a>
+  <a href="{{url('/lecturer/dashboard/courses')}}">Course Page</a>
+  <a href="#">Student List</a>
+  <a href="{{url('/lecturer/dashboard/evaluation')}}"class="active">Evaluation</a>
+  <a href="#">Mentorship</a>
+  <a href="{{url('/lecturer/feedback')}}" >Feedback Page</a>
+</div>
+<div class="dashboard">
+  <div class="sidebar">
+    <div class="profile-info">
+      <h2><i class="fas fa-user"></i>Lecturer Information</h2>
+      <p><i class="fas fa-coffee"></i> <strong>Name:</strong>{{ auth()->guard('lecturer')->user()->first_name }} {{ auth()->guard('lecturer')->user()->last_name }}</p>
+      <p><i class="fas fa-id-card"></i> <strong>Lecturer ID:</strong>{{auth()->guard('lecturer')->user()->id}}</p>
+      <p><i class="fas fa fa-institution"></i> <strong>Department:</strong><br>{{auth()->guard('lecturer')->user()->department}}<br></p>
     </div>
+    <div class="profile-actions">
+      <a id="edit-profile-btn">Edit Profile</a>
+      <a href="{{ route('lecturer.logout') }}">Sign Out</a>
+    </div>
+  </div>
 
-    <script>
-        function showPopup() {
-            var popup = document.getElementById('popup');
-            popup.style.display = 'flex';
-        }
+  <div id="edit-profile-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Edit Profile</h2>
+    <form id="edit-profile-form">
+      <label for="new-username">New Username:</label>
+      <input type="text" id="new-username" name="new-username" required><br>
+      <label for="new-password">New Password:</label>
+      <input type="password" id="new-password" name="new-password" required>
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+</div>
+<table id="evaluationTable">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Final Assessment</th>
+            <th>Evaluation Requests</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($lecturerCourses as $course)
+        <tr>
+            <td>{{ $course->course_name }}</td>
+            <td><button onclick="viewAssessment({{ $course->id }})">View</button></td>
+            <td><button onclick="openPopup({{ $course->id }})">Evaluate</button></td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
-        function closePopup() {
-            var popup = document.getElementById('popup');
-            popup.style.display = 'none';
-        }
+   <!-- <button onclick="saveGrades()">Save Grades</button> -->
 
-        function saveGrades() {
-            alert('Grades saved!');
-        }
+   <div id="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Feedback</th>
+                </tr>
+            </thead>
+            <tbody id="studentList"></tbody>
+        </table>
+    </div>
+</div>
 
-        function viewAssessment() {
-            alert('Assessment details for Calculus.');
-        }
-    </script>
+
+@else
+<h1 style="color:white"> User session ended </h1>
+@endif
+
+<script src="{{asset('js/DashboardsJS/Lecturer/evaluationPage.js')}}"></script>
 </body>
 </html>

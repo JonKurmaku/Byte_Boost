@@ -3,3 +3,17 @@ document.getElementById('assignmentForm').addEventListener('submit', function(ev
     var assignmentName = document.getElementById('assignmentName').value;
     alert('Assignment "' + assignmentName + '" submitted successfully!');
 });
+
+function enterAssessment(courseSlug){
+    console.log(`/final-assessment/${courseSlug}/take`);
+    window.location.href = `/final-assessment/${courseSlug}/take`;
+}
+
+
+
+
+  
+
+      
+
+

@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course</title>
+    <title>Web Technologies and Programming</title>
     <link rel="stylesheet" href="{{asset('css/Lectures/web.css')}}">
 </head>
 <body>
+@if(auth()->guard('student')->check())
+    <p>{{$student->username}}
+    <br>
+    <button onclick="window.location.href='/student/dashboard'">Back</button>
     <div class="container">
         <div class="course-info">
             <h1 class="title">Course Information</h1>
@@ -64,9 +68,17 @@
                     <button type="submit">Submit Assignment</button>
                 </form>
             </div>
+            <div class="section">
+            <form id="takeForm" method="GET" action="{{ route('final_assessment.render', ['slug' => $course->slug]) }}"> 
+            <button name="take" type="submit">Take Final Assessment</button>
+            </form>
+
+            </div>
         </div>
     </div>
-
+@else
+<h1 style="color:white"> User session ended </h1>
+@endif
     <script src="{{asset('js/Lectures/web.js')}}"></script>
 </body>
 </html>

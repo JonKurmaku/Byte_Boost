@@ -104,4 +104,16 @@ public function showFeedback()
     return view('\Dashboards\Lecturer\feedbackPage', compact('feedback'));
 }
 
+
+public function renderEvaluation()
+{
+    $lecturerId = auth()->guard('lecturer')->user()->id;
+
+    $lecturerCourses = Course::where('lecturer_id', $lecturerId)->get();
+
+
+    return view('\Dashboards\Lecturer\evaluationPage', compact('lecturerCourses'));
+}
+
+
 }

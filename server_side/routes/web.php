@@ -13,6 +13,8 @@ use App\Http\Controllers\Auth\ProfileControllers\StudentProfileController;
 use App\Http\Controllers\Auth\ProfileControllers\LecturerProfileController;
 use App\Http\Controllers\Auth\ProfileControllers\AdminProfileController;
 use App\Http\Controllers\Auth\LectureController\CourseController;
+use App\Http\Controllers\Auth\LectureController\FinalAssessmentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -152,7 +154,13 @@ Route::post('/student/dashboard/send-feedback', [StudentProfileController::class
 
 Route::get('/lecturer/feedback', [LecturerProfileController::class, 'showFeedback']);
 
-
-
 Route::get('/lectures/{slug}', [CourseController::class, 'show'])->name('lecture.show');
 
+Route::get('/lecturer/dashboard/evaluation',[LecturerProfileController::class, 'renderEvaluation']);
+
+
+Route::get('/final-assessment/{slug}/take', [FinalAssessmentController::class, 'render'])->name('final_assessment.render');
+
+Route::post('/final-assessment/store', [FinalAssessmentController::class, 'store'])->name('final_assessment.store');
+
+Route::get('/final-assessment/students/{courseId}', [FinalAssessmentController::class, 'getStudents']);
