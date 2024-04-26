@@ -18,11 +18,11 @@
                 <h2>Course Syllabus</h2>
                 <ul>
                     <li>Introduction to C Programming</li>
-                    <li>Week 1: Basics of C - Data Types, Variables, and Input/Output</li>
-                    <li>Week 2: Control Structures - Conditional Statements and Loops</li>
-                    <li>Week 3: Functions and Recursion</li>
+                    <li>Week 1: Data Types, Variables, and Input/Output</li>
+                    <li>Week 2: Control Structures (If, For, While)</li>
+                    <li>Week 3: Functions and Arrays</li>
                     <li>Week 4: Pointers and Dynamic Memory Allocation</li>
-                    
+                    <li>Week 5: Structs and File Handling</li>
                 </ul>
             </div>
             <div class="section lecture-videos">
@@ -30,11 +30,13 @@
                 <select id="lectureDropdown">
                     <option>Lecture 1: Introduction to C</option>
                     <option>Lecture 2: Working with Data Types and Variables</option>
-                    <option>Lecture 3: Implementing Control Structures</option>
-                    <option>Lecture 4: Creating Functions</option>
-                    <option>Lecture 5: Understanding Recursion</option>
-                    <option>Lecture 6: Mastering Pointers</option>
-                    <option>Lecture 7: Using Structs and Files in C</option>
+                    <option>Lecture 3: Control Structures</option>
+                    <option>Lecture 4: Functions and Modular Programming</option>
+                    <option>Lecture 5: Arrays and Strings</option>
+                    <option>Lecture 6: Introduction to Pointers</option>
+                    <option>Lecture 7: Memory Management in C</option>
+                    <option>Lecture 8: Working with Structures</option>
+                    <option>Lecture 9: File Operations in C</option>
                 </select>
             </div>
         </div>
@@ -42,23 +44,25 @@
             <div class="self-assessment-title">
                 <h2>Self Assessment</h2>
             </div>
-            <div class="row">
+            <div class="row"> 
                 <div class="section">
                     <h2>Quizzes</h2>
                     <ol>
-                        <li>Quiz 1: Basics of C Programming</li>
-                        <li>Quiz 2: Control Structures</li>
-                        <li>Quiz 3: Functions and Pointers</li>
-                        <li>Quiz 4: Advanced Topics in C</li>
+                        <li>Quiz 1: Basic Syntax and Operators</li>
+                        <li>Quiz 2: Control Structures and Loops</li>
+                        <li>Quiz 3: Functions and Arrays</li>
+                        <li>Quiz 4: Pointers and Memory Management</li>
+                        <li>Quiz 5: Structures and File Handling</li>
                     </ol>
                 </div>
                 <div class="section">
                     <h2>Homework Assignments</h2>
                     <ol>
-                        <li>Homework 1: Implement a Calculator in C</li>
-                        <li>Homework 2: Conditional Statements and Loops Exercises</li>
-                        <li>Homework 3: Pointers and Dynamic Memory</li>
-                        <li>Homework 4: File Operations with Structs</li>
+                        <li>Homework 1: Write a Program to Calculate Student Grades</li>
+                        <li>Homework 2: Create a Simple Calculator using Functions</li>
+                        <li>Homework 3: Implement an Array-Based Queue</li>
+                        <li>Homework 4: Develop a Dynamic String Manipulation Library</li>
+                        <li>Homework 5: Create a Record Management System using Files</li>
                     </ol>
                 </div>
             </div>
@@ -75,15 +79,14 @@
                 </form>
             </div>
             <div class="section">
-                <form id="requestForm">
-                    <label for="request">Request Final Assessment</label>
-                    <button type="submit"></button>
+                <form id="takeForm" method="GET" action="{{ route('final_assessment.render', ['slug' => $course->slug]) }}"> 
+                    <button name="take" type="submit">Take Final Assessment</button>
                 </form>
             </div>
         </div>
     </div>
 @else
-<h1 style="color:white"> User session ended </h1>
+    <h1 style="color:white"> User session ended </h1>
 @endif
     <script src="{{asset('js/Lectures/web.js')}}"></script>
 </body>

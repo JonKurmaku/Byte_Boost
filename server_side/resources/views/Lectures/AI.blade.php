@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Structures Course</title>
+    <title>Artificial Intelligence Course</title>
     <link rel="stylesheet" href="{{asset('css/Lectures/web.css')}}">
 </head>
 <body>
@@ -17,21 +17,25 @@
             <div class="section course-syllabus">
                 <h2>Course Syllabus</h2>
                 <ul>
-                    <li>Introduction to Data Structures</li>
-                    <li>Week 1: Arrays and Linked Lists</li>
-                    <li>Week 2: Stacks and Queues</li>
-                    <li>Week 3: Trees and Binary Search Trees</li>
-                    <li>Week 4: Graphs and Graph Algorithms</li>
+                    <li>Introduction to Artificial Intelligence</li>
+                    <li>Week 1: History and Foundations of AI</li>
+                    <li>Week 2: Search Algorithms and Game Theory</li>
+                    <li>Week 3: Knowledge Representation and Reasoning</li>
+                    <li>Week 4: Machine Learning in AI</li>
+                    <li>Week 5: Neural Networks and Deep Learning</li>
+                    <li>Week 6: Natural Language Processing</li>
                 </ul>
             </div>
             <div class="section lecture-videos">
                 <h2>Lectures</h2>
                 <select id="lectureDropdown">
-                    <option>Lecture 1: Introduction to Data Structures</option>
-                    <option>Lecture 2: Implementing Arrays and Linked Lists</option>
-                    <option>Lecture 3: Understanding Stacks and Queues</option>
-                    <option>Lecture 4: Exploring Trees and Binary Search Trees</option>
-                    <option>Lecture 5: Graphs and Their Algorithms</option>
+                    <option>Lecture 1: What is AI?</option>
+                    <option>Lecture 2: Intelligent Agents and Environments</option>
+                    <option>Lecture 3: Optimization and Search Strategies</option>
+                    <option>Lecture 4: Logic and Planning</option>
+                    <option>Lecture 5: Introduction to Machine Learning</option>
+                    <option>Lecture 6: Advanced Topics in Neural Networks</option>
+                    <option>Lecture 7: Applications of NLP</option>
                 </select>
             </div>
         </div>
@@ -43,19 +47,22 @@
                 <div class="section">
                     <h2>Quizzes</h2>
                     <ol>
-                        <li>Quiz 1: Arrays and Linked Lists</li>
-                        <li>Quiz 2: Stacks and Queues</li>
-                        <li>Quiz 3: Tree Structures</li>
-                        <li>Quiz 4: Graph Algorithms</li>
+                        <li>Quiz 1: Basics of AI and Intelligent Agents</li>
+                        <li>Quiz 2: Search Algorithms and Their Applications</li>
+                        <li>Quiz 3: Logical Reasoning and AI Planning</li>
+                        <li>Quiz 4: Fundamentals of Machine Learning</li>
+                        <li>Quiz 5: Deep Learning Concepts</li>
+                        <li>Quiz 6: Natural Language Processing Techniques</li>
                     </ol>
                 </div>
                 <div class="section">
                     <h2>Homework Assignments</h2>
                     <ol>
-                        <li>Homework 1: Implement a Dynamic Array</li>
-                        <li>Homework 2: Create a Linked List</li>
-                        <li>Homework 3: Build a Binary Search Tree</li>
-                        <li>Homework 4: Design a Graph and Perform BFS and DFS</li>
+                        <li>Homework 1: Implement a Simple Search Algorithm</li>
+                        <li>Homework 2: Develop a Tic-Tac-Toe AI using Minimax</li>
+                        <li>Homework 3: Create a Knowledge-Based System</li>
+                        <li>Homework 4: Train a Small Neural Network</li>
+                        <li>Homework 5: Sentiment Analysis with NLP</li>
                     </ol>
                 </div>
             </div>

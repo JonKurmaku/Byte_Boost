@@ -78,6 +78,10 @@
                     <label for="request">Request Final Assessment</label>
                     <button type="submit"></button>
                 </form>
+                <div class="section">
+                <form id="takeForm" method="GET" action="{{ route('final_assessment.render', ['slug' => $course->slug]) }}"> 
+                    <button name="take" type="submit">Take Final Assessment</button>
+                </form>
             </div>
         </div>
     </div>

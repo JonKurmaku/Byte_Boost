@@ -18,21 +18,20 @@
                 <h2>Course Syllabus</h2>
                 <ul>
                     <li>Introduction to Digital Design</li>
-                    <li>Week 1: Combinational Logic</li>
-                    <li>Week 2: Sequential Circuits</li>
-                    <li>Week 3: State Machines</li>
-                    <li>Week 4: FPGA and ASIC Design</li>
+                    <li>Week 1: Basics of Combinatorial Logic</li>
+                    <li>Week 2: Sequential Logic and Systems</li>
+                    <li>Week 3: CPLD and FPGA Design</li>
+                    <li>Week 4: VLSI Design Basics</li>
                 </ul>
             </div>
             <div class="section lecture-videos">
                 <h2>Lectures</h2>
                 <select id="lectureDropdown">
-                    <option>Lecture 1: Introduction to Digital Logic</option>
-                    <option>Lecture 2: Combinational Logic Basics</option>
-                    <option>Lecture 3: Designing Sequential Circuits</option>
-                    <option>Lecture 4: Introduction to State Machines</option>
-                    <option>Lecture 5: FPGA Fundamentals</option>
-                    <option>Lecture 6: ASIC Design Techniques</option>
+                    <option>Lecture 1: Fundamentals of Digital Logic</option>
+                    <option>Lecture 2: Combinatorial Circuits</option>
+                    <option>Lecture 3: Sequential Circuits</option>
+                    <option>Lecture 4: Introduction to CPLD and FPGA</option>
+                    <option>Lecture 5: Basics of VLSI Design</option>
                 </select>
             </div>
         </div>
@@ -44,19 +43,19 @@
                 <div class="section">
                     <h2>Quizzes</h2>
                     <ol>
-                        <li>Quiz 1: Basics of Combinational Logic</li>
-                        <li>Quiz 2: Sequential Circuit Design</li>
-                        <li>Quiz 3: Implementing State Machines</li>
-                        <li>Quiz 4: FPGA vs. ASIC</li>
+                        <li>Quiz 1: Digital Logic Design</li>
+                        <li>Quiz 2: Sequential Logic Implementation</li>
+                        <li>Quiz 3: FPGA Design Techniques</li>
+                        <li>Quiz 4: VLSI Design Challenges</li>
                     </ol>
                 </div>
                 <div class="section">
                     <h2>Homework Assignments</h2>
                     <ol>
-                        <li>Homework 1: Design a 4-bit Adder</li>
-                        <li>Homework 2: Create a 3-bit Binary Counter</li>
-                        <li>Homework 3: Develop a Simple State Machine</li>
-                        <li>Homework 4: FPGA Design Project</li>
+                        <li>Homework 1: Design a Binary Adder</li>
+                        <li>Homework 2: Create a Clock Divider</li>
+                        <li>Homework 3: FPGA Project</li>
+                        <li>Homework 4: Simple VLSI Layout</li>
                     </ol>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Object-Oriented Programming</title>
+    <title>Object-Oriented Programming Course</title>
     <link rel="stylesheet" href="{{asset('css/Lectures/web.css')}}">
 </head>
 <body>
@@ -18,20 +18,22 @@
                 <h2>Course Syllabus</h2>
                 <ul>
                     <li>Introduction to Object-Oriented Programming</li>
-                    <li>Week 1: Understanding Classes and Objects</li>
-                    <li>Week 2: Principles of Inheritance and Polymorphism</li>
-                    <li>Week 3: Interfaces and Abstract Classes</li>
-                    <li>Week 4: Exception Handling and File I/O</li>
+                    <li>Week 1: Fundamentals of OOP - Classes and Objects</li>
+                    <li>Week 2: Inheritance and Polymorphism</li>
+                    <li>Week 3: Encapsulation and Interfaces</li>
+                    <li>Week 4: Design Patterns and Principles</li>
                 </ul>
             </div>
             <div class="section lecture-videos">
                 <h2>Lectures</h2>
                 <select id="lectureDropdown">
                     <option>Lecture 1: Introduction to OOP</option>
-                    <option>Lecture 2: Classes and Objects</option>
-                    <option>Lecture 3: Inheritance</option>
-                    <option>Lecture 4: Polymorphism</option>
-                    <option>Lecture 5: Interfaces and Abstract Classes</option>
+                    <option>Lecture 2: Working with Classes and Objects</option>
+                    <option>Lecture 3: Implementing Inheritance</option>
+                    <option>Lecture 4: Polymorphism in Action</option>
+                    <option>Lecture 5: Encapsulation Techniques</option>
+                    <option>Lecture 6: Interface Design</option>
+                    <option>Lecture 7: Understanding Design Patterns</option>
                 </select>
             </div>
         </div>
@@ -39,21 +41,23 @@
             <div class="self-assessment-title">
                 <h2>Self Assessment</h2>
             </div>
-            <div class="row">
+            <div class="row"> 
                 <div class="section">
                     <h2>Quizzes</h2>
                     <ol>
-                        <li>Quiz 1: Understanding Classes</li>
-                        <li>Quiz 2: Working with Inheritance</li>
-                        <li>Quiz 3: Implementing Interfaces</li>
+                        <li>Quiz 1: Classes and Objects</li>
+                        <li>Quiz 2: Inheritance Concepts</li>
+                        <li>Quiz 3: Understanding Polymorphism</li>
+                        <li>Quiz 4: Design Patterns and Principles</li>
                     </ol>
                 </div>
                 <div class="section">
                     <h2>Homework Assignments</h2>
                     <ol>
-                        <li>Homework 1: Create a Class Diagram</li>
-                        <li>Homework 2: Develop a Simple Inheritance Hierarchy</li>
-                        <li>Homework 3: Interface Implementation</li>
+                        <li>Homework 1: Implement a Class Hierarchy</li>
+                        <li>Homework 2: Design a Polymorphic System</li>
+                        <li>Homework 3: Encapsulation in a Software Module</li>
+                        <li>Homework 4: Apply a Design Pattern in a Small Project</li>
                     </ol>
                 </div>
             </div>
@@ -70,15 +74,14 @@
                 </form>
             </div>
             <div class="section">
-                <form id="requestForm">
-                    <label for="request">Request Final Assessment</label>
-                    <button type="submit"></button>
+                <form id="takeForm" method="GET" action="{{ route('final_assessment.render', ['slug' => $course->slug]) }}"> 
+                    <button name="take" type="submit">Take Final Assessment</button>
                 </form>
             </div>
         </div>
     </div>
 @else
-<h1 style="color:white"> User session ended </h1>
+    <h1 style="color:white"> User session ended </h1>
 @endif
     <script src="{{asset('js/Lectures/web.js')}}"></script>
 </body>
