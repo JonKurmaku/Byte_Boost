@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Technologies and Programming</title>
+    <title>Digital Design Course</title>
     <link rel="stylesheet" href="{{asset('css/Lectures/web.css')}}">
 </head>
 <body>
@@ -17,24 +17,22 @@
             <div class="section course-syllabus">
                 <h2>Course Syllabus</h2>
                 <ul>
-                    <li>Introduction to the Course</li>
-                    <li>Week 1: Basics of HTML - Elements, Attributes, and Document Structure</li>
-                    <li>Week 2: Introduction to CSS - Selectors, Properties, and Box Model</li>
-                    <li>Week 3: Basics of JavaScript - Syntax, Operators, and DOM Manipulations</li>
-                    <li>Week 4: Advanced Topics - Responsive Design with CSS, Introduction to JavaScript Libraries (jQuery)</li>
+                    <li>Introduction to Digital Design</li>
+                    <li>Week 1: Combinational Logic</li>
+                    <li>Week 2: Sequential Circuits</li>
+                    <li>Week 3: State Machines</li>
+                    <li>Week 4: FPGA and ASIC Design</li>
                 </ul>
             </div>
             <div class="section lecture-videos">
                 <h2>Lectures</h2>
                 <select id="lectureDropdown">
-                    <option>Lecture 1: Introduction to Web Development</option>
-                    <option>Lecture 2: HTML Basics</option>
-                    <option>Lecture 3: HTML Forms and Tables</option>
-                    <option>Lecture 4: CSS for Layouts</option>
-                    <option>Lecture 5: JavaScript Control Structures</option>
-                    <option>Lecture 6: Event Handling in JavaScript</option>
-                    <option>Lecture 7: Advanced CSS Techniques</option>
-                    <option>Lecture 8: Exploring jQuery Basics</option>
+                    <option>Lecture 1: Introduction to Digital Logic</option>
+                    <option>Lecture 2: Combinational Logic Basics</option>
+                    <option>Lecture 3: Designing Sequential Circuits</option>
+                    <option>Lecture 4: Introduction to State Machines</option>
+                    <option>Lecture 5: FPGA Fundamentals</option>
+                    <option>Lecture 6: ASIC Design Techniques</option>
                 </select>
             </div>
         </div>
@@ -46,19 +44,19 @@
                 <div class="section">
                     <h2>Quizzes</h2>
                     <ol>
-                        <li>Quiz 1: HTML Basics</li>
-                        <li>Quiz 2: CSS Fundamentals</li>
-                        <li>Quiz 3: JavaScript Basics</li>
-                        <li>Quiz 4: Advanced Web Techniques</li>
+                        <li>Quiz 1: Basics of Combinational Logic</li>
+                        <li>Quiz 2: Sequential Circuit Design</li>
+                        <li>Quiz 3: Implementing State Machines</li>
+                        <li>Quiz 4: FPGA vs. ASIC</li>
                     </ol>
                 </div>
                 <div class="section">
                     <h2>Homework Assignments</h2>
                     <ol>
-                        <li>Homework 1: Build a Simple HTML Page</li>
-                        <li>Homework 2: Style Your Page with CSS</li>
-                        <li>Homework 3: Add Interactive Elements with JavaScript</li>
-                        <li>Homework 4: Create a Responsive Layout with Media Queries</li>
+                        <li>Homework 1: Design a 4-bit Adder</li>
+                        <li>Homework 2: Create a 3-bit Binary Counter</li>
+                        <li>Homework 3: Develop a Simple State Machine</li>
+                        <li>Homework 4: FPGA Design Project</li>
                     </ol>
                 </div>
             </div>

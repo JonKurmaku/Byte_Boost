@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C-Programming</title>
+    <title>C Programming Course</title>
     <link rel="stylesheet" href="{{asset('css/Lectures/web.css')}}">
 </head>
 <body>
@@ -17,18 +17,24 @@
             <div class="section course-syllabus">
                 <h2>Course Syllabus</h2>
                 <ul>
-                    <li>Introduction to the Course</li>
-                    <li>Week 1: Basics of HTML</li>
-                    <li>Week 2: Introduction to CSS</li>
-                    <li>Week 3: Basics of JavaScript</li>
+                    <li>Introduction to C Programming</li>
+                    <li>Week 1: Basics of C - Data Types, Variables, and Input/Output</li>
+                    <li>Week 2: Control Structures - Conditional Statements and Loops</li>
+                    <li>Week 3: Functions and Recursion</li>
+                    <li>Week 4: Pointers and Dynamic Memory Allocation</li>
+                    
                 </ul>
             </div>
             <div class="section lecture-videos">
-                <h2>Lecture</h2>
+                <h2>Lectures</h2>
                 <select id="lectureDropdown">
-                    <option>Lecture 1: Introduction</option>
-                    <option>Lecture 2: HTML Basics</option>
-                    <option>Lecture 3: HTML Forms</option>
+                    <option>Lecture 1: Introduction to C</option>
+                    <option>Lecture 2: Working with Data Types and Variables</option>
+                    <option>Lecture 3: Implementing Control Structures</option>
+                    <option>Lecture 4: Creating Functions</option>
+                    <option>Lecture 5: Understanding Recursion</option>
+                    <option>Lecture 6: Mastering Pointers</option>
+                    <option>Lecture 7: Using Structs and Files in C</option>
                 </select>
             </div>
         </div>
@@ -36,23 +42,23 @@
             <div class="self-assessment-title">
                 <h2>Self Assessment</h2>
             </div>
-            <div class="row"> 
+            <div class="row">
                 <div class="section">
                     <h2>Quizzes</h2>
                     <ol>
-                        <li>Quiz 1: HTML Basics</li>
-                        <li>Quiz 2: CSS Fundamentals</li>
-                        <li>Quiz 3: JavaScript Introduction</li>
-                        
+                        <li>Quiz 1: Basics of C Programming</li>
+                        <li>Quiz 2: Control Structures</li>
+                        <li>Quiz 3: Functions and Pointers</li>
+                        <li>Quiz 4: Advanced Topics in C</li>
                     </ol>
                 </div>
                 <div class="section">
                     <h2>Homework Assignments</h2>
                     <ol>
-                        <li>Homework 1: Build a Simple HTML Page</li>
-                        <li>Homework 2: Style Your Page with CSS</li>
-                        <li>Homework 3: Add Interactive Elements with JavaScript</li>
-                        
+                        <li>Homework 1: Implement a Calculator in C</li>
+                        <li>Homework 2: Conditional Statements and Loops Exercises</li>
+                        <li>Homework 3: Pointers and Dynamic Memory</li>
+                        <li>Homework 4: File Operations with Structs</li>
                     </ol>
                 </div>
             </div>
