@@ -44,6 +44,15 @@ class StudentProfileController extends Controller
         $chosenCourses = $student->courses()->where('student_id', $student->id)->get();
     
         $allCourses = Course::whereNotIn('id', $chosenCourses->pluck('id'))->get();
+
+        $log = new ServerLog();
+        $log->username = $student->username;
+        $log->user_level = 'Student'; 
+        $log->request_description = 'Render Course Selection Page'; 
+        $log->http_request_type = 'GET'; 
+        $log->request_time = now(); 
+        $log->save();
+
         return view('Dashboards\Student\CourseSelection\courseSelection', compact('allCourses', 'chosenCourses'));
         
     }
@@ -55,7 +64,15 @@ class StudentProfileController extends Controller
         $mentorshipApplication = MentorshipApplication::where('student_id', $student->id)
         ->where('hasBeenAccepted', true)
         ->exists();
-
+        
+        $log = new ServerLog();
+        $log->username = $student->username;
+        $log->user_level = 'Student'; 
+        $log->request_description = 'Render Dashboard Courses'; 
+        $log->http_request_type = 'GET'; 
+        $log->request_time = now(); 
+        $log->save();
+        
         $mentor = $mentorshipApplication ? 1 : 0;
         return view('Dashboards\Student\dashboardStd', compact('chosenCourses','mentor'));
     }
@@ -71,6 +88,14 @@ class StudentProfileController extends Controller
         
         $finalAssesmentData = FinalAssessment::where('student_id', $student->id)->get();
 
+        $log = new ServerLog();
+        $log->username = $student->username;
+        $log->user_level = 'Student'; 
+        $log->request_description = 'Render Grades'; 
+        $log->http_request_type = 'GET'; 
+        $log->request_time = now(); 
+        $log->save();
+        
         return view('Dashboards\Student\Grades\grades', compact('coursesData','finalAssesmentData'));
     }
     
@@ -149,6 +174,16 @@ public function renderMentorship(){
     $student =Auth::guard('student')->user();
     $studentId = $student->id;
     $courses = Student::find($studentId)->courses;
+
+    $log = new ServerLog();
+    $log->username = $student->username;
+    $log->user_level = 'Student'; 
+    $log->request_description = 'Render Mentorship Courses'; 
+    $log->http_request_type = 'GET'; 
+    $log->request_time = now(); 
+    $log->save();
+    
+
     return view('Dashboards\Student\Mentorship\mentorshipProgram',compact('studentId','courses'));
 }
 

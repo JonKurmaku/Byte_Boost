@@ -58,7 +58,16 @@ class FinalAssessmentController extends Controller
 public function render($slug){
     $student = Auth::guard('student')->user();
     $course = Course::where('slug', $slug)->firstOrFail();
-        
+    
+    $log = new ServerLog();
+    $log->username = $student->username;
+    $log->user_level = 'Student'; 
+    $log->request_description = 'Final Assessment Render'; 
+    $log->http_request_type = 'GET'; 
+    $log->request_time = now(); 
+    $log->save(); 
+
+
     return view('FinalAssessment.' . $slug . '-final', compact('course', 'student'));
 }
     
@@ -106,6 +115,16 @@ public function evaluate(Request $request)
     if ($finalAssessment) {
         $finalAssessment->grade = $selectedValue;
         $finalAssessment->save();
+
+    $user = Auth::guard('lecturer')->user();
+    $log = new ServerLog();
+    $log->username = $user->username;
+    $log->user_level = 'Lecturer'; 
+    $log->request_description = 'Final Assessment Grading'; 
+    $log->http_request_type = 'POST'; 
+    $log->request_time = now(); 
+    $log->save(); 
+
 
         return response()->json(['message' => 'Evaluation submitted successfully']);
     } else {
