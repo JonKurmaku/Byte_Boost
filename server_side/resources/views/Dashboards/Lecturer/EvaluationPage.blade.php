@@ -47,6 +47,7 @@
     </form>
   </div>
 </div>
+<div class="main-content">
 <table id="evaluationTable">
     <thead>
         <tr>
@@ -65,6 +66,7 @@
         @endforeach
     </tbody>
 </table>
+</div>
 
 
    <div id="popup-form">

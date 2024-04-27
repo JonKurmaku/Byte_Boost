@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Professor Dashboard</title>
+<link rel="stylesheet" href="{{asset('css/DashboardCSS/LecturerDash/LecturerCoursePage.css')}}">
 <link rel="stylesheet" href="{{asset('css/DashboardCSS/LecturerDash/LecturerDashboardStyle.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -49,16 +50,24 @@
 </div>
 
   <div class="main-content">
-    <div class="chart" style="display: block;">
-		<h3>Select Course:</h3>
-		<select id="course-select" onchange="displayCourseStudCnt()">
-			<option value="course1">Data Mining</option>
-			<option value="course2">Artificial Intelligence</option>
-			<option value="course3">Parallel Programming</option>
-		</select>
-		<br><br>
-		<b>Number of Students: </b><span id="std-cnt"></span><br>
-    </div>
+  <table id="courses-table">
+      <thead>
+        <tr>
+          <th>Course Id</th>
+          <th>Course Name</th>
+          <th>Number of Students</th>
+        </tr>
+      </thead>
+      <tbody>
+  @foreach($lecturerCourses as $course)
+  <tr>
+  <td>{{ $course->id }}</td>
+    <td>{{ $course->course_name }}</td>
+    <td>{{ $course->num_students_chosen }}</td>
+  </tr>
+  @endforeach
+</tbody>
+    </table>
   </div>
 </div>
 @else

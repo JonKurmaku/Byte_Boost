@@ -35,7 +35,14 @@ class LecturerProfileController extends Controller
         return response()->json(['message' => 'Profile updated successfully'], 200);
     }
 
+public function showDashboardCourses(){
+    $lecturerId = auth()->guard('lecturer')->user()->id;
 
+    $lecturerCourses = Course::where('lecturer_id', $lecturerId)->get();
+
+
+    return view('/Dashboards/Lecturer/dashboardLecturer',compact('lecturerCourses')); 
+}
 
 public function showCourses() {
     

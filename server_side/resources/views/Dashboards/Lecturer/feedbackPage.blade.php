@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lecturer Courses</title>
+  <link rel="stylesheet" href="{{asset('css/DashboardCSS/LecturerDash/LecturerCoursePage.css')}}">
   <link rel="stylesheet" href="{{asset('css/DashboardCSS/LecturerDash/LecturerDashboardStyle.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,7 +16,7 @@
 <div class="navbar">
   <a href="{{url('/lecturer/dashboard')}}" >Dashboard</a>
   <a href="{{url('/lecturer/dashboard/courses')}}">Course Page</a>
-  <a href="{{url('/lecturer/dashboard/studentlist')}}" class="active">Student List</a>
+  <a href="{{url('/lecturer/dashboard/studentlist')}}">Student List</a>
   <a href="{{url('/lecturer/dashboard/evaluation')}}">Evaluation</a>
   <a href="{{url('/lecturer/dashboard/mentorship')}}">Mentorship Overview</a>
   <a href="{{url('/lecturer/feedback')}}"  class="active">Feedback Page</a>
@@ -50,6 +51,7 @@
 @if ($feedback->isEmpty())
     <p>No feedback available.</p>
 @else
+<div class="main-content">
     <table>
         <thead>
             <tr>
@@ -70,6 +72,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
 @endif
 
 

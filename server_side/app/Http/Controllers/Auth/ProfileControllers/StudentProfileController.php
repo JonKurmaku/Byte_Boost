@@ -102,33 +102,40 @@ class StudentProfileController extends Controller
 
     public function addCourse(Request $request) {
         $courseId = $request->input('course_id');
-        $studentId=Auth::guard('student')->user()->id;
-        $user=Auth::guard('student')->user();
-
+        $studentId = Auth::guard('student')->user()->id;
+        $user = Auth::guard('student')->user();
+    
         $student = Student::find($studentId);
+        $currentCourseCount = $student->courses()->count();
+    
         if ($student->courses->contains($courseId)) {
             return redirect()->back()->with('error', 'You have already chosen this course.');
         }
     
-        $course = Course::findOrFail($courseId);
-        if ($course->num_students_chosen < $course->max_students) {
-            $course->students()->attach($studentId);
-            $course->num_students_chosen++;
-            $course->save();
-            
-            $log = new ServerLog();
-            $log->username = $user->username;
-            $log->user_level = 'Student'; 
-            $log->request_description = 'Add Course'; 
-            $log->http_request_type = 'POST'; 
-            $log->request_time = now(); 
-            $log->save(); 
-            
-            return redirect()->back()->with('success', 'Course added successfully.');
+        if ($currentCourseCount < 3) {
+            $course = Course::findOrFail($courseId);
+            if ($course->num_students_chosen < $course->max_students) {
+                $course->students()->attach($studentId);
+                $course->num_students_chosen++;
+                $course->save();
+                
+                $log = new ServerLog();
+                $log->username = $user->username;
+                $log->user_level = 'Student'; 
+                $log->request_description = 'Add Course'; 
+                $log->http_request_type = 'POST'; 
+                $log->request_time = now(); 
+                $log->save(); 
+                
+                return redirect()->back()->with('success', 'Course added successfully.');
+            } else {
+                return redirect()->back()->with('error', 'This course is already full.');
+            }
         } else {
-            return redirect()->back()->with('error', 'This course is already full.');
+            return redirect()->back()->with('error', 'You have already chosen the maximum number of courses.');
         }
     }
+    
 
 
     public function fetchLecturers()

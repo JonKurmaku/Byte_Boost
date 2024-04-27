@@ -1,3 +1,6 @@
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
  });
@@ -60,6 +63,7 @@ document.getElementById('assessmentForm').addEventListener('submit', function(ev
         data: formData,
         success: function(data) {
             console.log('Data sent successfully:', data);
+            window.history.back();
         },
         error: function(xhr, status, error) {
             console.error('There was a problem with the AJAX request:', error);

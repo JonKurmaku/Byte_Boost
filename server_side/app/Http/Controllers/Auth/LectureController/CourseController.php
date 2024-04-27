@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use app\Models\ServerLog;
+use App\Models\ServerLog;
 
 class CourseController extends Controller
 {
