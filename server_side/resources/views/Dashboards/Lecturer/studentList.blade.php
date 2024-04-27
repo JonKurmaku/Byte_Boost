@@ -17,7 +17,7 @@
   <a href="{{url('/lecturer/dashboard/courses')}}">Course Page</a>
   <a href="{{url('/lecturer/dashboard/studentlist')}}" class="active">Student List</a>
   <a href="{{url('/lecturer/dashboard/evaluation')}}">Evaluation</a>
-  <a href="#">Mentorship</a>
+  <a href="{{url('/lecturer/dashboard/mentorship')}}">Mentorship Overview</a>
   <a href="{{url('/lecturer/feedback')}}">Feedback Page</a>
 </div>
 <div class="dashboard">
@@ -49,29 +49,26 @@
   <div class="container">
     <h1>Student List</h1><br>
     <table id="student-table">
-      <thead>
+    <thead>
         <tr>
-          <th>Student Name</th>
-          <th>Student Grade</th>
-          <th>Edit</th>
-          <th>Delete</th>
+        <th>Course ID</th>    
+        <th>Course Name</th>
+        <th>Student ID</th>
+        <th>Student Name</th>
         </tr>
-      </thead>
-      <tbody>
-  @foreach($students as $student)
-  <tr>
-    <td>{{ $student->student_name }}</td>
-    <td>{{ $student->student_grade }}</td>
-    <td>
-      <button class="btn edit-btn">Edit</button>
-    </td>
-    <td>
-      <button class="btn delete-btn">Delete</button>
-    </td>
-  </tr>
-  @endforeach
-</tbody>
-    </table>
+    </thead>
+    <tbody>
+        @foreach($studentCourseInfo as $info)
+        <tr>
+        <td>{{ $info['course_id'] }}</td>
+        <td>{{ $info['course_name'] }}</td>
+        <td>{{ $info['student_id'] }}</td>
+        <td>{{ $info['student_name'] }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
   </div>
 @else
 <h1 style="color:white"> User session ended </h1>

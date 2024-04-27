@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics 1 Course</title>
+    <title>Operating Systems Course</title>
     <link rel="stylesheet" href="{{asset('css/Lectures/web.css')}}">
 </head>
 <body>
@@ -17,24 +18,24 @@
             <div class="section course-syllabus">
                 <h2>Course Syllabus</h2>
                 <ul>
-                    <li>Introduction to Physics</li>
-                    <li>Week 1: Mechanics - Motion in One Dimension</li>
-                    <li>Week 2: Mechanics - Newton's Laws of Motion</li>
-                    <li>Week 3: Conservation of Energy and Momentum</li>
-                    <li>Week 4: Thermodynamics and Heat Transfer</li>
-                    <li>Week 5: Waves and Sound</li>
+                    <li>Introduction to Operating Systems</li>
+                    <li>Week 1: Processes and Threads</li>
+                    <li>Week 2: Scheduling and Synchronization</li>
+                    <li>Week 3: Memory Management</li>
+                    <li>Week 4: File Systems and Storage</li>
+                    <li>Week 5: Security and Protection</li>
                 </ul>
             </div>
             <div class="section lecture-videos">
                 <h2>Lectures</h2>
                 <select id="lectureDropdown">
-                    <option>Lecture 1: Kinematics in One Dimension</option>
-                    <option>Lecture 2: Vectors and Projectile Motion</option>
-                    <option>Lecture 3: Newton's Laws and Applications</option>
-                    <option>Lecture 4: Work, Energy, and Power</option>
-                    <option>Lecture 5: Conservation Laws</option>
-                    <option>Lecture 6: Fundamentals of Thermodynamics</option>
-                    <option>Lecture 7: Introduction to Waves and Sound</option>
+                    <option>Lecture 1: Overview of Operating Systems</option>
+                    <option>Lecture 2: Processes and Thread Management</option>
+                    <option>Lecture 3: CPU Scheduling Algorithms</option>
+                    <option>Lecture 4: Concurrency and Deadlocks</option>
+                    <option>Lecture 5: Memory Allocation and Paging</option>
+                    <option>Lecture 6: File Systems Architecture</option>
+                    <option>Lecture 7: Security Mechanisms in OS</option>
                 </select>
             </div>
         </div>
@@ -46,21 +47,21 @@
                 <div class="section">
                     <h2>Quizzes</h2>
                     <ol>
-                        <li>Quiz 1: Motion in One Dimension</li>
-                        <li>Quiz 2: Newton's Laws in Practice</li>
-                        <li>Quiz 3: Energy and Work</li>
-                        <li>Quiz 4: Principles of Thermodynamics</li>
-                        <li>Quiz 5: Understanding Waves and Sound</li>
+                        <li>Quiz 1: Processes and Thread Concepts</li>
+                        <li>Quiz 2: Scheduling Techniques</li>
+                        <li>Quiz 3: Synchronization and Deadlocks</li>
+                        <li>Quiz 4: Memory Management Strategies</li>
+                        <li>Quiz 5: File System Operations</li>
                     </ol>
                 </div>
                 <div class="section">
                     <h2>Homework Assignments</h2>
                     <ol>
-                        <li>Homework 1: Calculating Kinematics</li>
-                        <li>Homework 2: Newton's Laws Case Studies</li>
-                        <li>Homework 3: Energy Conservation Problems</li>
-                        <li>Homework 4: Heat Transfer Experiments</li>
-                        <li>Homework 5: Wave Characteristics and Properties</li>
+                        <li>Homework 1: Simulate a Process Scheduler</li>
+                        <li>Homework 2: Implement a Mutex Lock</li>
+                        <li>Homework 3: Design a Simple Paging System</li>
+                        <li>Homework 4: File System Management Project</li>
+                        <li>Homework 5: Develop a Basic Security Module for an OS</li>
                     </ol>
                 </div>
             </div>

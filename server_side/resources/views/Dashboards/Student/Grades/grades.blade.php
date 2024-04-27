@@ -5,20 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Course Information</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link rel="stylesheet" href="{{asset("css/DashboardCSS/StudentDash/grades.css")}}">
 <link rel="stylesheet" href="{{asset("css/DashboardCSS/StudentDash/DashboardStyle.css")}}">
+<link rel="stylesheet" href="{{asset("css/DashboardCSS/StudentDash/grades.css")}}">
 </head>
 
 <body>
 @if(auth()->guard('student')->check())
 <div class="navbar">
         <a href="{{url('/student/dashboard')}}"  >Dashboard</a>
-        <a href="{{url('/student/dashboard/courseSelection')}}" >Course Overview</a>
-        <a href="{{url('/student/dashboard/grades')}}" class="active">Grades</a>
-        <a href="#">Mentorship Program</a>
+        <a href="{{url('/student/dashboard/courseSelection')}}" >Course Selected</a>
+        <a href="{{url('/student/dashboard/grades')}}" class="active" >Grades</a>
+        <a href="{{url('/student/dashboard/mentorship')}}" >Mentorship Program</a>
         <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
       </div>
-    
+  
+
       <h2>Course Information</h2>
 
       <table>
@@ -30,14 +31,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($coursesData as $course)
-        <tr>
-            <td>{{ $course->course_name }}</td>
-            <td>{{ $course->lecturer_name}}</td>
-            <td> Grade PlaceHolder</td>
-        </tr>
-        @endforeach
-    </tbody>
+    @foreach ($coursesData as $course)
+    <tr>
+        <td>{{ $course->course_name }}</td>
+        <td>{{ $course->lecturer_name}}</td>
+        <td>
+            @php
+                $assessment = $finalAssesmentData->firstWhere('course_id', $course->id);
+            @endphp
+
+            @if ($assessment)
+                {{ $assessment->grade }}
+            @else
+                No Grade
+            @endif
+        </td>
+    </tr>
+    @endforeach
+</tbody>
+
 </table>
 
 <h2>Passed Courses vs Selected Courses</h2>

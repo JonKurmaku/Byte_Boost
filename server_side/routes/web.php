@@ -164,3 +164,16 @@ Route::get('/final-assessment/{slug}/take', [FinalAssessmentController::class, '
 Route::post('/final-assessment/store', [FinalAssessmentController::class, 'store'])->name('final_assessment.store');
 
 Route::get('/final-assessment/students/{courseId}', [FinalAssessmentController::class, 'getStudents']);
+
+Route::post('/final-assesment/lecturer/evaluate', [FinalAssessmentController::class, 'evaluate'])->name('final_assessment.evaluate');;
+
+Route::get('/student/dashboard/mentorship',[StudentProfileController::class,'renderMentorship']);
+
+Route::post('/student/dashboard/mentorship-apply', [StudentProfileController::class, 'applyMentorship'])->name('mentorship.apply');
+
+Route::get('/lecturer/dashboard/mentorship',[LecturerProfileController::class,'renderMentorshipOverview']);
+
+Route::post('/lecturer/dashboard/mentorship/process',[LecturerProfileController::class,'processMentorship']);
+
+Route::get('/lecturer/dashboard/studentlist',[LecturerProfileController::class,'renderStudentList']);
+

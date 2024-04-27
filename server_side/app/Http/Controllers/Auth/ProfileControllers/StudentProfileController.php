@@ -11,6 +11,8 @@ use App\Models\ServerLog;
 use App\Models\Course;
 use App\Models\Lecturer;
 use App\Models\Feedbacks;
+use App\Models\FinalAssessment;
+use App\Models\MentorshipApplication;
 
 class StudentProfileController extends Controller
 {
@@ -50,8 +52,12 @@ class StudentProfileController extends Controller
        
         $student = Auth::guard('student')->user();
         $chosenCourses = $student->courses()->where('student_id', $student->id)->get();
-       
-        return view('Dashboards\Student\dashboardStd', compact('chosenCourses'));
+        $mentorshipApplication = MentorshipApplication::where('student_id', $student->id)
+        ->where('hasBeenAccepted', true)
+        ->exists();
+
+        $mentor = $mentorshipApplication ? 1 : 0;
+        return view('Dashboards\Student\dashboardStd', compact('chosenCourses','mentor'));
     }
 
     public function gradesCourses() {
@@ -63,7 +69,9 @@ class StudentProfileController extends Controller
                               ->where('student_id', $student->id)
                               ->get();
         
-        return view('Dashboards\Student\Grades\grades', compact('coursesData'));
+        $finalAssesmentData = FinalAssessment::where('student_id', $student->id)->get();
+
+        return view('Dashboards\Student\Grades\grades', compact('coursesData','finalAssesmentData'));
     }
     
 
@@ -136,5 +144,42 @@ public function giveFeedback(Request $request)
     $log->request_time = now(); 
     $log->save(); 
 }
+
+public function renderMentorship(){
+    $student =Auth::guard('student')->user();
+    $studentId = $student->id;
+    $courses = Student::find($studentId)->courses;
+    return view('Dashboards\Student\Mentorship\mentorshipProgram',compact('studentId','courses'));
+}
+
+
+
+public function applyMentorship(Request $request)
+{
+    $student = Auth::guard('student')->user();
+    $studentId = $student->id;
+    $courseId = $request->input('course_id');
+    
+    $application = MentorshipApplication::firstOrCreate([
+        'student_id' => $studentId,
+        'course_id' => $courseId,
+    ], [
+        'hasBeenAccepted' => false,
+    ]);
+
+    if ($application->wasRecentlyCreated) {
+        $log = new ServerLog();
+        $log->username = $student->username;
+        $log->user_level = 'Student'; 
+        $log->request_description = 'Apply for Mentorship program'; 
+        $log->http_request_type = 'POST'; 
+        $log->request_time = now(); 
+        $log->save(); 
+    }
+
+    return response()->json(['message' => 'Mentorship application submitted successfully']);
+}
+
+
 
 }

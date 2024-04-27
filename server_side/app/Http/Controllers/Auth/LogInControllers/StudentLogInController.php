@@ -47,9 +47,6 @@ class StudentLogInController extends Controller
 
     public function logout(Request $request)
     {
-        Cookie::queue(Cookie::forget('your_session_cookie_name'));
-        Auth::guard('student')->logout();
-    
         $username = Auth::guard('student')->user()->username ?? '';
             $log = new ServerLog();
             $log->username = $username;
@@ -58,6 +55,11 @@ class StudentLogInController extends Controller
             $log->http_request_type = 'GET'; 
             $log->request_time = now(); 
             $log->save(); 
+
+        Cookie::queue(Cookie::forget('your_session_cookie_name'));
+        Auth::guard('student')->logout();
+    
+        
 
         $request->session()->invalidate();
     

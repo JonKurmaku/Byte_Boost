@@ -12,12 +12,12 @@
 <body>
 @if(auth()->guard('student')->check())
 <div class="navbar">
-<a href="{{url('/student/dashboard')}}"  >Dashboard</a>
-        <a href="{{url('/student/dashboard/courseSelection')}}" >Course Overview</a>
-        <a href="{{url('/student/dashboard/grades')}}">Grades</a>
-        <a href="#">Mentorship Program</a>
-        <a href="{{url('/student/dashboard/feedback')}}" class="active">Feedback Page</a>
-</div>
+        <a href="{{url('/student/dashboard')}}" class="active" >Dashboard</a>
+        <a href="{{url('/student/dashboard/courseSelection')}}" >Course Selected</a>
+        <a href="{{url('/student/dashboard/grades')}}" >Grades</a>
+        <a href="{{url('/student/dashboard/mentorship')}}" >Mentorship Program</a>
+        <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
+      </div>
     
 <h2>Lecturers Search</h2>
 

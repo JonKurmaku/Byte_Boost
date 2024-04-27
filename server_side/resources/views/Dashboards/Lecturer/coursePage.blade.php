@@ -14,10 +14,10 @@
 @if(auth()->guard('lecturer')->check())
 <div class="navbar">
   <a href="{{url('/lecturer/dashboard')}}" >Dashboard</a>
-  <a href="{{url('/lecturer/dashboard/courses')}}" class="active">Course Page</a>
-  <a href="#">Student List</a>
+  <a href="{{url('/lecturer/dashboard/courses')}}"  class="active">Course Page</a>
+  <a href="{{url('/lecturer/dashboard/studentlist')}}">Student List</a>
   <a href="{{url('/lecturer/dashboard/evaluation')}}">Evaluation</a>
-  <a href="#">Mentorship</a>
+  <a href="{{url('/lecturer/dashboard/mentorship')}}">Mentorship Overview</a>
   <a href="{{url('/lecturer/feedback')}}">Feedback Page</a>
 </div>
 <div class="dashboard">
@@ -77,6 +77,7 @@
     <table id="courses-table">
       <thead>
         <tr>
+          <th>Course Id</th>
           <th>Course Name</th>
           <th>Number of Students</th>
           <th>Edit</th>
@@ -86,6 +87,7 @@
       <tbody>
   @foreach($lecturerCourses as $course)
   <tr>
+  <td>{{ $course->id }}</td>
     <td>{{ $course->course_name }}</td>
     <td>{{ $course->num_students_chosen }}</td>
     <td>

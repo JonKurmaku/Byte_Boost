@@ -40,7 +40,7 @@ button {
     justify-content: center;
 }
 
-.popup-content {
+.popup-content , .popup-form-content{
     background-color: white;
     padding: 20px;
     border-radius: 5px;
@@ -56,4 +56,18 @@ button {
     right: 15px;
     cursor: pointer;
     font-size: 24px;
+}
+
+#popup-form {
+
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 10000; 
 }

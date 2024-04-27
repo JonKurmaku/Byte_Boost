@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ServerLog;
 use App\Models\Course;
 use App\Models\Feedbacks;
+use App\Models\MentorshipApplication;
+use App\Models\Student;
 
 class LecturerProfileController extends Controller
 {
@@ -17,12 +19,7 @@ class LecturerProfileController extends Controller
     {
         $user=Auth::guard('lecturer')->user();
 
-    /*   $request=json_decode($request);
-        $request->validate([
-            'n_username' => 'required|string|max:255|unique:students',
-            'n_password' => 'required|string|min:6', 
-        ]);
-    */  $log = new ServerLog();
+    $log = new ServerLog();
     $log->username = $user->username;
     $log->user_level = 'Lecturer'; 
     $log->request_description = 'Update Profile Credentials'; 
@@ -111,8 +108,83 @@ public function renderEvaluation()
 
     $lecturerCourses = Course::where('lecturer_id', $lecturerId)->get();
 
-
     return view('\Dashboards\Lecturer\evaluationPage', compact('lecturerCourses'));
+}
+
+public function renderMentorshipOverview()
+{
+    $lecturerId = auth()->guard('lecturer')->user()->id;
+    
+    $lecturerCourses = Course::where('lecturer_id', $lecturerId)->pluck('course_name', 'id');
+
+    $mentorshipApplications = MentorshipApplication::whereIn('course_id', $lecturerCourses->keys())
+        ->where('hasBeenProcessed', 0)
+        ->get();
+
+    foreach ($mentorshipApplications as $application) {
+        $application->course_name = $lecturerCourses[$application->course_id];
+    }
+
+    return view('Dashboards\Lecturer\mentorshipOverview', compact('mentorshipApplications'));
+}
+
+public function clearProcessedApplications()
+{
+    try {
+        $applicationsToDelete = MentorshipApplication::where('hasBeenProcessed', true)
+            ->where('hasBeenAccepted', false)
+            ->get();
+
+        $deletedCount = $applicationsToDelete->count();
+        $applicationsToDelete->each->delete();
+
+        return response()->json(['message' => 'Successfully cleared database of ' . $deletedCount . ' records.']);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'An error occurred while clearing database: ' . $e->getMessage()], 500);
+    }
+}
+
+public function processMentorship(Request $request){
+    $studentID = $request->input('student_id');
+    $courseID = $request->input('course_id'); 
+    $status = $request->input('status');
+    $mentorshipApplication = MentorshipApplication::where('student_id', $studentID)
+                                      ->where('course_id', $courseID)
+                                      ->first();
+
+    if ($mentorshipApplication) {
+        $mentorshipApplication->hasBeenAccepted = $status;
+        $mentorshipApplication->hasBeenProcessed = 1;
+        $mentorshipApplication->save();
+
+        $this->clearProcessedApplications();
+        return response()->json(['message' => 'Evaluation submitted successfully']);
+    } else {
+        return response()->json(['error' => 'Final assessment not found'], 404);
+    }
+}
+
+public function renderStudentList(){
+    $lecturerId = auth()->guard('lecturer')->user()->id;
+
+    $students = Student::whereHas('courses', function ($query) use ($lecturerId) {
+        $query->where('lecturer_id', $lecturerId);
+    })->with(['courses' => function ($query) use ($lecturerId) {
+        $query->where('lecturer_id', $lecturerId);
+    }])->get();
+
+    $studentCourseInfo = [];
+    foreach ($students as $student) {
+        foreach ($student->courses as $course) {
+            $studentCourseInfo[] = [
+                'student_name' => $student->username,
+                'student_id' => $student->id,
+                'course_name' => $course->course_name,
+                'course_id' => $course->id,
+            ];
+        }
+    }
+    return view('Dashboards\Lecturer\studentList', compact('studentCourseInfo'));
 }
 
 

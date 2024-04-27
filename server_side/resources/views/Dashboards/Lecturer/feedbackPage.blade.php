@@ -15,10 +15,10 @@
 <div class="navbar">
   <a href="{{url('/lecturer/dashboard')}}" >Dashboard</a>
   <a href="{{url('/lecturer/dashboard/courses')}}">Course Page</a>
-  <a href="#">Student List</a>
+  <a href="{{url('/lecturer/dashboard/studentlist')}}" class="active">Student List</a>
   <a href="{{url('/lecturer/dashboard/evaluation')}}">Evaluation</a>
-  <a href="#">Mentorship</a>
-  <a href="{{url('/lecturer/feedback')}}" class="active">Feedback Page</a>
+  <a href="{{url('/lecturer/dashboard/mentorship')}}">Mentorship Overview</a>
+  <a href="{{url('/lecturer/feedback')}}"  class="active">Feedback Page</a>
 </div>
 <div class="dashboard">
   <div class="sidebar">

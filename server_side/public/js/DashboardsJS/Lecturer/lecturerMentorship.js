@@ -1,34 +1,63 @@
-function showStudents(course) {
-    // Sample data for demonstration
-    const students = {
-        'Web Development': ['Alice Johnson', 'Bob Smith', 'Charlie Brown', 'David Wilson', 'Eva Green'],
-        'Software Engineering': ['Frank Young', 'Grace Hall', 'Harry King'],
-        'Machine Learning': ['Ivy Lee', 'Jack White', 'Kara Black', 'Liam Grey', 'Mia Hill', 'Nora Scott', 'Owen Morris', 'Paula Jones']
-    };
+document.addEventListener("DOMContentLoaded", function() {
+    csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+ });
 
-    let studentList = students[course].join('<br>');
 
-    // Create modal HTML
-    let modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.innerHTML = `<div class="modal-content"><span class="close">&times;</span><h2>${course} - Students</h2><p>${studentList}</p></div>`;
-    document.body.appendChild(modal);
+function processMentor(courseId, courseName, studentId) {
+    console.log(courseId + " " + courseName + " " + studentId);
+    openPopup(courseId, courseName, studentId);
+}
 
-    // Display the modal
-    modal.style.display = 'block';
+function openPopup(courseId, courseName, studentId) {
+    document.getElementById('myModal').style.display = 'block';
+    function handleSubmit(event) {
+        event.preventDefault();
 
-    // Get the <span> element that closes the modal
-    let close = modal.querySelector('.close');
-    close.onclick = function() {
-        modal.style.display = "none";
-        modal.remove();
-    }
-
-    
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-            modal.remove();
+        var status = document.querySelector('input[name="status"]:checked').value;
+        if (status === "accept") {
+            status = 1;
+            console.log('Selected status:', status);
+        } else {
+            status = 0;
+            console.log('Selected status:', status);
         }
+        let data={
+            course_id:courseId,
+            course_name:courseName,
+            student_id:studentId,
+            status:status
+        }
+        console.log(data);
+
+        closePopup();
+        postMentorshipStatus(data);
+        document.getElementById('popupForm').reset();
+        document.getElementById('popupForm').removeEventListener('submit', handleSubmit);
+    
+    
     }
+
+    document.getElementById('popupForm').addEventListener('submit', handleSubmit);
+}
+
+function closePopup() {
+    document.getElementById('myModal').style.display = 'none';
+}
+
+
+function postMentorshipStatus(newData){
+    $.ajax({
+        url: '/lecturer/dashboard/mentorship/process',
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        data: newData,
+        success: function(data) {
+            console.log('Data sent successfully:', data);
+        },
+        error: function(xhr, status, error) {
+            console.error('There was a problem with the AJAX request:', error);
+        }
+    });
 }

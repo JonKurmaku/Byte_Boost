@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecturer Evaluation Page</title>
@@ -14,10 +15,10 @@
 <div class="navbar">
   <a href="{{url('/lecturer/dashboard')}}" >Dashboard</a>
   <a href="{{url('/lecturer/dashboard/courses')}}">Course Page</a>
-  <a href="#">Student List</a>
-  <a href="{{url('/lecturer/dashboard/evaluation')}}"class="active">Evaluation</a>
-  <a href="#">Mentorship</a>
-  <a href="{{url('/lecturer/feedback')}}" >Feedback Page</a>
+  <a href="{{url('/lecturer/dashboard/studentlist')}}">Student List</a>
+  <a href="{{url('/lecturer/dashboard/evaluation')}}"  class="active">Evaluation</a>
+  <a href="{{url('/lecturer/dashboard/mentorship')}}">Mentorship Overview</a>
+  <a href="{{url('/lecturer/feedback')}}">Feedback Page</a>
 </div>
 <div class="dashboard">
   <div class="sidebar">
@@ -65,7 +66,24 @@
     </tbody>
 </table>
 
-   <!-- <button onclick="saveGrades()">Save Grades</button> -->
+
+   <div id="popup-form">
+   <span class="close" onclick="closePopupForm()">&times;</span>
+    <div id="popup-form-content" class="popup-form-content">
+        <form id="evaluationForm">
+        <label>
+            <input type="radio" name="evaluation" value="Passed"> Passed
+        </label>
+        <label>
+            <input type="radio" name="evaluation" value="Failed"> Failed
+        </label>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+
 
    <div id="popup">
     <div class="popup-content">
@@ -75,7 +93,8 @@
                 <tr>
                     <th>Student ID</th>
                     <th>Name</th>
-                    <th>Feedback</th>
+                    <th>Submission</th>
+                    <th>Evaluate</th>
                 </tr>
             </thead>
             <tbody id="studentList"></tbody>
@@ -84,10 +103,11 @@
 </div>
 
 
+
 @else
 <h1 style="color:white"> User session ended </h1>
 @endif
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{asset('js/DashboardsJS/Lecturer/evaluationPage.js')}}"></script>
 </body>
 </html>

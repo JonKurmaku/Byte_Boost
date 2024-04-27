@@ -12,7 +12,7 @@ class CreateFinalAssessmentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('course_id');
-            $table->string('grade')->nullable();
+            $table->string('grade')->default("N/A");
             
             $table->string('answer_1')->nullable();
             $table->string('answer_2')->nullable();

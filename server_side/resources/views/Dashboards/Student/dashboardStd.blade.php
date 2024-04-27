@@ -13,10 +13,10 @@
 <body>
 @if(auth()->guard('student')->check())
 <div class="navbar">
-<a href="{{url('/student/dashboard')}}" class="active">Dashboard</a>
-        <a href="{{url('/student/dashboard/courseSelection')}}" >Course Overview</a>
-        <a href="{{url('/student/dashboard/grades')}}">Grades</a>
-        <a href="#">Mentorship Program</a>
+        <a href="{{url('/student/dashboard')}}" class="active" >Dashboard</a>
+        <a href="{{url('/student/dashboard/courseSelection')}}" >Course Selected</a>
+        <a href="{{url('/student/dashboard/grades')}}" >Grades</a>
+        <a href="{{url('/student/dashboard/mentorship')}}" >Mentorship Program</a>
         <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
       </div>
 <div class="dashboard">
@@ -26,6 +26,10 @@
       <p><i class="fas fa-user-graduate"></i> <strong>Name:</strong>{{ auth()->guard('student')->user()->first_name }} {{ auth()->guard('student')->user()->last_name }}</p>
       <p><i class="fas fa-id-card"></i> <strong>Student ID:</strong> {{ auth()->guard('student')->user()->id }} </p>
       <p><i class="fas fa-graduation-cap"></i> <strong>Program:</strong> {{ auth()->guard('student')->user()->program }}</p>
+      @if($mentor==1)
+      <p><i class="fas fa-graduation-cap"></i> <strong>Authority:</strong>Mentor</p>
+      @endif
+   
     </div>
     <div class="profile-actions">
       <a id="edit-profile-btn" >Edit Profile</a>

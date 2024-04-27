@@ -127,3 +127,7 @@ button:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+#popupForm>label{
+color: black;
+}
