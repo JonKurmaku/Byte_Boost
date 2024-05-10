@@ -52,49 +52,76 @@
 
 </table>
 
-<h2>Passed Courses vs Selected Courses</h2>
+<h2>Successful Course Completion</h2>
+<div id="graph"></div>
 
-<canvas id="courseChart" width="400" height="200" style="color: '#ffffffb7';"></canvas>
 @else
 <h1 style="color:white"> User session ended </h1>
 @endif
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-    var passedCourses = [85, 70, 95, 60, 80]; 
-    var selectedCourses = ["Course 1", "Course 2", "Course 3", "Course 4", "Course 5"]; 
+var data = {!! json_encode($coursesData) !!}; 
+var selectedCourses = [];
 
-    var ctx = document.getElementById('courseChart').getContext('2d');
-    var courseChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: selectedCourses, 
-            datasets: [{
-                label: 'Passed Course Percentage',
-                data: passedCourses, 
-                backgroundColor: 'rgba(54, 162, 235, 0.5)', 
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Passed Course Percentage (%)',
-                        fontColor: '#ffffffb7'
-                    }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Selected Course Name',
-                        fontColor: '#ffffffb7'
-                    }
-                }]
-            }
-        }
-    });
+data.forEach(function(course) {
+    var passed = 0;
+    var assessment = {!! json_encode($finalAssesmentData->first()) !!};
+    if (assessment && assessment.course_id === course.id) {
+        passed = assessment.grade ? 1 : 0;
+    }
+    selectedCourses.push({ selected: course.id, passed: passed });
+});
+
+function drawGraph(data) {
+    var graphContainer = document.getElementById('graph');
+    graphContainer.innerHTML = ''; 
+
+    var width = 400;
+    var height = 300;
+    var margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    var graphWidth = width - margin.left - margin.right;
+    var graphHeight = height - margin.top - margin.bottom;
+
+    var svg = d3.create("svg")
+        .attr("width", width)
+        .attr("height", height);
+    
+    graphContainer.appendChild(svg.node());
+
+    var xScale = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d) { return d.selected; })])
+        .range([0, graphWidth]);
+
+    var yScale = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d) { return d.passed; })])
+        .range([graphHeight, 0]);
+
+    var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale);
+
+    svg.append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + (height - margin.bottom) + ')')
+        .call(xAxis);
+
+    svg.append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .call(yAxis);
+
+    var line = d3.line()
+        .x(function(d) { return xScale(d.selected); })
+        .y(function(d) { return yScale(d.passed); });
+
+    svg.append('path')
+        .datum(data)
+        .attr('fill', 'none')
+        .attr('stroke', 'steelblue')
+        .attr('stroke-width', 1.5)
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .attr('d', line);
+}
+
+        drawGraph(selectedCourses);
 </script>
-
+<script src-="{{asset("js/DashboardJS/Student/grades.js")}}"></script>
 </body>
 </html>

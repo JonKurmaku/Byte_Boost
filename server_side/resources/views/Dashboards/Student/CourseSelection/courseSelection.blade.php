@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Selection</title>
     <link rel="stylesheet" href="{{asset("css/DashboardCSS/StudentDash/courseSelection.css")}}">
@@ -11,8 +12,7 @@
 <body>
 @if(auth()->guard('student')->check())
     <div class="navbar">
-    <div class="navbar">
-        <a href="{{url('/student/dashboard')}}"  >Dashboard</a>
+        <a href="{{url('/student/dashboard')}}" >Dashboard</a>
         <a href="{{url('/student/dashboard/courseSelection')}}" class="active" >Course Selected</a>
         <a href="{{url('/student/dashboard/grades')}}" >Grades</a>
         <a href="{{url('/student/dashboard/mentorship')}}" >Mentorship Program</a>
@@ -40,15 +40,21 @@
             <td>{{ $course->num_students_chosen }}</td>
             <td>
                 
-                <p>Edit</p>
+                <button onclick="removeCourse({{ $course->id }})">Remove</button>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+<h3>All Courses</h3>
+@if (count($chosenCourses)>=3)
+<h3 style="color:white">Maximum number of courses enrolled (Max no.3).
+<br>
+    Unenroll to select new courses.
+</h3>
+@else
 
-
-        <h3>All Courses</h3>
+        
 <div class="scrollable-table">
     <table class="add-table">
         <thead>
@@ -81,12 +87,15 @@
         </tbody>
     </table>
 </div>
+@endif
 
     </div>
-</div>
+
   
 @else
 <h1 style="color:white">User session ended</h1>
 @endif
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{asset("js/DashboardsJS/Student/courseSelection.js")}}"></script>
 </html>

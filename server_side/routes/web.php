@@ -159,3 +159,6 @@ Route::delete('/admin/dashboard/delete-course/{course_id}', [AdminProfileControl
 Route::put('/admin/dashboard/edit-std', [AdminProfileController::class, 'updateStudent'])->name('admin.student.update');
 Route::put('/admin/dashboard/edit-lect', [AdminProfileController::class, 'updateLecturer'])->name('admin.lecturer.update');
 Route::put('/admin/dashboard/edit-course', [AdminProfileController::class, 'updateCourse'])->name('admin.course.update');
+
+
+Route::delete('/student/course/remove/{course_id}',[StudentProfileController::class ,'removeCourse'])->name('student.course.delete');

@@ -26,9 +26,13 @@
       <p><i class="fas fa-user-graduate"></i> <strong>Name:</strong>{{ auth()->guard('student')->user()->first_name }} {{ auth()->guard('student')->user()->last_name }}</p>
       <p><i class="fas fa-id-card"></i> <strong>Student ID:</strong> {{ auth()->guard('student')->user()->id }} </p>
       <p><i class="fas fa-graduation-cap"></i> <strong>Program:</strong> {{ auth()->guard('student')->user()->program }}</p>
-      @if($mentor==1)
-      <p><i class="fas fa-graduation-cap"></i> <strong>Authority:</strong>Mentor</p>
-      @endif
+      @if($isMentor)
+    <p><i class="fas fa-graduation-cap"></i> <strong>Authority:</strong> Mentor 
+    @foreach($mentor as $course)
+        {{$course}}, 
+    @endforeach
+    </p>
+@endif
    
     </div>
     <div class="profile-actions">

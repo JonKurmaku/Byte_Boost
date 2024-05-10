@@ -12,11 +12,11 @@
 <body>
 @if(auth()->guard('student')->check())
 <div class="navbar">
-        <a href="{{url('/student/dashboard')}}" class="active" >Dashboard</a>
+        <a href="{{url('/student/dashboard')}}"  >Dashboard</a>
         <a href="{{url('/student/dashboard/courseSelection')}}" >Course Selected</a>
         <a href="{{url('/student/dashboard/grades')}}" >Grades</a>
         <a href="{{url('/student/dashboard/mentorship')}}" >Mentorship Program</a>
-        <a href="{{url('/student/dashboard/feedback')}}">Feedback Page</a>
+        <a href="{{url('/student/dashboard/feedback')}}" class="active">Feedback Page</a>
       </div>
     
 <h2>Lecturers Search</h2>
@@ -56,8 +56,6 @@
     <input type="radio" id="star1" name="rating" value="5">
     <label for="star1"><i class="fas fa-star"></i></label>
 </div>
-
-            
             <br>
             <br>
 

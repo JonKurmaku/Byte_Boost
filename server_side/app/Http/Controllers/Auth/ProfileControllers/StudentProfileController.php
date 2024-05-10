@@ -61,10 +61,12 @@ class StudentProfileController extends Controller
        
         $student = Auth::guard('student')->user();
         $chosenCourses = $student->courses()->where('student_id', $student->id)->get();
-        $mentorshipApplication = MentorshipApplication::where('student_id', $student->id)
+        $mentorshipApplications = MentorshipApplication::where('student_id', $student->id)
         ->where('hasBeenAccepted', true)
-        ->exists();
-        
+        ->get();
+        $isMentor = MentorshipApplication::where('student_id', $student->id)
+        ->where('hasBeenAccepted', true)->exists();
+
         $log = new ServerLog();
         $log->username = $student->username;
         $log->user_level = 'Student'; 
@@ -73,8 +75,15 @@ class StudentProfileController extends Controller
         $log->request_time = now(); 
         $log->save();
         
-        $mentor = $mentorshipApplication ? 1 : 0;
-        return view('Dashboards\Student\dashboardStd', compact('chosenCourses','mentor'));
+        $mentor = [];
+
+    foreach ($mentorshipApplications as $application) {
+    $course = Course::find($application->course_id);
+    if ($course) {
+        $mentor[] = $course->course_name;
+    }
+}
+        return view('Dashboards\Student\dashboardStd', compact('chosenCourses','mentor','isMentor'));
     }
 
     public function gradesCourses() {
@@ -136,7 +145,32 @@ class StudentProfileController extends Controller
         }
     }
     
-
+    public function removeCourse($courseId){
+        $studentId = Auth::guard('student')->user()->id;
+        $user = Auth::guard('student')->user();
+    
+        $student = Student::find($studentId);
+        $course = Course::find($courseId);
+    
+        if ($student->courses->contains($courseId)) {
+            $student->courses()->detach($courseId);
+            
+            $course->num_students_chosen--;
+            $course->save();
+            
+            $log = new ServerLog();
+            $log->username = $user->username;
+            $log->user_level = 'Student'; 
+            $log->request_description = 'Remove Course'; 
+            $log->http_request_type = 'DELETE'; 
+            $log->request_time = now(); 
+            $log->save(); 
+            
+            return redirect()->back()->with('success', 'Course removed successfully.');
+        } else {
+            return redirect()->back()->with('error', 'You are not enrolled in this course.');
+        }
+    }
 
     public function fetchLecturers()
     {
@@ -178,9 +212,18 @@ public function giveFeedback(Request $request)
 }
 
 public function renderMentorship(){
-    $student =Auth::guard('student')->user();
+    $student = Auth::guard('student')->user();
     $studentId = $student->id;
-    $courses = Student::find($studentId)->courses;
+
+    $selectedCourses = $student->courses->pluck('id');
+
+    $courses = Course::whereIn('id', $selectedCourses)
+                    ->whereNotIn('id', function($query) use ($studentId) {
+                        $query->select('course_id')
+                              ->from('mentorship_applications')
+                              ->where('student_id', $studentId)
+                              ->where('hasBeenAccepted', true); 
+                    })->get();
 
     $log = new ServerLog();
     $log->username = $student->username;
@@ -189,10 +232,12 @@ public function renderMentorship(){
     $log->http_request_type = 'GET'; 
     $log->request_time = now(); 
     $log->save();
-    
 
-    return view('Dashboards\Student\Mentorship\mentorshipProgram',compact('studentId','courses'));
+    return view('Dashboards\Student\Mentorship\mentorshipProgram', compact('studentId', 'courses'));
 }
+
+
+
 
 
 
