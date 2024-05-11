@@ -46,30 +46,27 @@
     </form>
   </div>
 </div>
+
+@foreach($studentCourseInfo as $courseInfo)
   <div class="container">
-    <h1>Student List</h1><br>
-    <table id="student-table">
+    <h1>{{ $courseInfo['course_name'] }} Student List</h1><br>
+    <table id="student-table-{{ $courseInfo['course_id'] }}">
     <thead>
         <tr>
-        <th>Course ID</th>    
-        <th>Course Name</th>
         <th>Student ID</th>
         <th>Student Name</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($studentCourseInfo as $info)
         <tr>
-        <td>{{ $info['course_id'] }}</td>
-        <td>{{ $info['course_name'] }}</td>
-        <td>{{ $info['student_id'] }}</td>
-        <td>{{ $info['student_name'] }}</td>
+        <td>{{ $courseInfo['student_id'] }}</td>
+        <td>{{ $courseInfo['student_name'] }}</td>
         </tr>
-        @endforeach
     </tbody>
-</table>
-
+  </table>
   </div>
+@endforeach
+
 @else
 <h1 style="color:white"> User session ended </h1>
 @endif

@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Professor Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="{{asset('css/DashboardCSS/LecturerDash/LecturerCoursePage.css')}}">
 <link rel="stylesheet" href="{{asset('css/DashboardCSS/LecturerDash/LecturerDashboardStyle.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -49,8 +50,9 @@
   </div>
 </div>
 
-  <div class="main-content">
-  <table id="courses-table">
+<div class="main-content">
+  <div id="courses-table">
+    <table>
       <thead>
         <tr>
           <th>Course Id</th>
@@ -59,15 +61,18 @@
         </tr>
       </thead>
       <tbody>
-  @foreach($lecturerCourses as $course)
-  <tr>
-  <td>{{ $course->id }}</td>
-    <td>{{ $course->course_name }}</td>
-    <td>{{ $course->num_students_chosen }}</td>
-  </tr>
-  @endforeach
-</tbody>
+        @foreach($lecturerCourses as $course)
+        <tr>
+          <td>{{ $course->id }}</td>
+          <td>{{ $course->course_name }}</td>
+          <td>{{ $course->num_students_chosen }}</td>
+        </tr>
+        @endforeach
+      </tbody>
     </table>
+  </div>
+  <div class="chart-container" style="max-width: 400px;">
+    <canvas id="courseChart" width="300" height="300" style="color: white"></canvas>
   </div>
 </div>
 @else
@@ -75,5 +80,48 @@
 @endif
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{asset('js\DashboardsJS\Lecturer\profDashboard.js')}}"></script>
+<script>
+    var courseData = {!! json_encode($lecturerCourses->pluck('num_students_chosen')) !!};
+    var courseNames = {!! json_encode($lecturerCourses->pluck('course_name')) !!};
+
+    var ctx = document.getElementById('courseChart').getContext('2d');
+    var courseChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: courseNames,
+            datasets: [{
+                label: 'Number of Students',
+                data: courseData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 </body>
 </html>

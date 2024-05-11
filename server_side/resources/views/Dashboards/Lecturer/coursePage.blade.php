@@ -80,7 +80,6 @@
           <th>Course Id</th>
           <th>Course Name</th>
           <th>Number of Students</th>
-          <th>Edit</th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -90,9 +89,6 @@
   <td>{{ $course->id }}</td>
     <td>{{ $course->course_name }}</td>
     <td>{{ $course->num_students_chosen }}</td>
-    <td>
-      <button class="btn edit-btn">Edit</button>
-    </td>
     <td>
       <button class="btn delete-btn" onclick="deleteCourse('{{$course->course_id}}')">Delete</button>
     </td>

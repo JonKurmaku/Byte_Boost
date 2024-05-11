@@ -61,6 +61,7 @@ html{
   .main-content {
     flex-grow: 1;
     padding: 20px;
+    flex-direction: column;
     
   }
   
@@ -81,7 +82,6 @@ html{
   }
   
   .btn {
-    /* display: inline-block; */
     width: 150px;
     height: 45px;
     padding: 5px 20px;
@@ -107,7 +107,6 @@ html{
     background-color: black;
  }
 
- /*Edit modal CSS*/
  .modal {
   display: none;
   position: fixed;
@@ -141,3 +140,5 @@ html{
   text-decoration: none;
   cursor: pointer;
 }
+
+
