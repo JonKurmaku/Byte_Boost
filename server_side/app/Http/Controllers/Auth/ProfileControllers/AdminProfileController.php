@@ -185,7 +185,7 @@ class AdminProfileController extends Controller
         $log = new ServerLog();
         $log->username = $user->username;
         $log->user_level = 'Admin'; 
-        $log->request_description = 'Update Lectuer Credentials'; 
+        $log->request_description = 'Update Lecturer Credentials'; 
         $log->http_request_type = 'PUT'; 
         $log->request_time = now(); 
         $log->save(); 
