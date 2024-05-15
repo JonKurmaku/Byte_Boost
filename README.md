@@ -16,3 +16,5 @@ To repository collabolators and others , In order for the code to run successful
 [MeetingReportForm-Week_5.docx](https://github.com/JonKurmaku/Software-Engineering-Project/files/15084387/MeetingReportForm-Week_5.docx)
 
 [MeetingReportForm-Week_6.docx](https://github.com/JonKurmaku/Software-Engineering-Project/files/15276265/MeetingReportForm-Week_6.docx)
+
+[MeetingReportForm-Week_7.docx](https://github.com/JonKurmaku/Software-Engineering-Project/files/15319581/MeetingReportForm-Week_7.docx)
