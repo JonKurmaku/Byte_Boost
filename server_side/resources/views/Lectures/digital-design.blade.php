@@ -8,7 +8,7 @@
 </head>
 <body>
 @if(auth()->guard('student')->check())
-    <p>{{$student->username}}
+<p>Student :<strong>{{$student->username}}</strong></p>
     <br>
     <button onclick="window.location.href='/student/dashboard'">Back</button>
     <div class="container">

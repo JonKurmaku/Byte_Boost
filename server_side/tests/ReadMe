@@ -1,0 +1,13 @@
+The testing enviroment is already established:
+.env.testing -> Enviroment for testing
+phpunit.xm -> Declared Enviroment 
+
+How to run testing:
+//To migrate the testing database 
+1. php artisan migrate
+2. php artisan test
+
+If (FeatureTest.status === PASS)
+    test is successful
+else if (FeatureTest.status === WARNING || FeatureTest.status === UNSUCCESSFUL)
+    test is unsuccessful
