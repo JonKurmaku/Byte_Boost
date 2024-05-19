@@ -1,0 +1,3 @@
+This folder will serve as a storage for the correct order of migration execution ,to not create constraints error, because when the migrations refresh there is a possiblity of order changing based on creation timestamp, but the migrations need to run in a specfic order to execute succesfully.
+
+Lecturer_Table -> Courses_Table -> Student_Table
