@@ -3,7 +3,8 @@ To repository collabolators and others , In order for the code to run successful
 2.Rename the file ".env.example" to ".env"
 3.Run php artisan serve to start the server @[http://127.0.0.1:8000]
 
-[Software_Engineering_Project_Requirements.docx](https://github.com/JonKurmaku/Software-Engineering-Project/files/15402068/Software_Engineering_Project_Requirements.docx)
+[Software_Engineering_Project_Requirements (6).docx](https://github.com/JonKurmaku/Software-Engineering-Project/files/15421052/Software_Engineering_Project_Requirements.6.docx)
+
 
 [MeetingReportForm-Week_1.docx](https://github.com/JonKurmaku/Software-Engineering-Project/files/15084382/MeetingReportForm-Week_1.docx)
 
